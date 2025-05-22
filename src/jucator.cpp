@@ -1,6 +1,6 @@
 
-#include "jucator.h"
-#include "exceptii.h"
+#include "../include/jucator.h"
+#include "../include/exceptii.h"
 
 std::shared_ptr<Jucator> Jucator::instance = nullptr;
 Jucator::Jucator(): an(0), buget(5000), popularitate(0), trupa(nullptr) {}

@@ -1,5 +1,5 @@
-#include "activitate.h"
-#include <string>
+#include "../include/activitate.h"
+
 Activitate::Activitate(){
   this->succes = 0;
 }

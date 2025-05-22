@@ -1,22 +1,22 @@
-#include "gameplay.h"
-#include "trupa.h"
-#include "tehnicianSunet.h"
-#include "bodyguard.h"
+#include "../include/gameplay.h"
+#include "../include/trupa.h"
+#include "../include/tehnicianSunet.h"
+#include "../include/bodyguard.h"
 #include <iostream>
 #include <random>
 #include <typeinfo>
-#include "concert.h"
-#include "turneu.h"
-#include "MelodieSimpla.h"
-#include "MelodieColaborativa.h"
-#include "avion.h"
-#include "exceptii.h"
-#include "harta.h"
-#include "jucator.h"
-#include "oras.h"
-#include "bazaDateJoc.h"
+#include "../include/concert.h"
+#include "../include/turneu.h"
+#include "../include/MelodieSimpla.h"
+#include "../include/MelodieColaborativa.h"
+#include "../include/avion.h"
+#include "../include/exceptii.h"
+#include "../include/harta.h"
+#include "../include/jucator.h"
+#include "../include/oras.h"
+#include "../include/bazaDateJoc.h"
 #include <list>
-#include "validation.h"
+#include "../include/validation.h"
 
 int Gameplay::costMinimLocatie(const std::shared_ptr<Turneu>& turneu) {
   auto orase = bazaDateLocatii->getItems();

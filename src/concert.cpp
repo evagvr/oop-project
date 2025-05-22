@@ -1,10 +1,8 @@
-#include "concert.h"
-#include "activitate.h"
-#include <string>
+#include "../include/concert.h"
+#include "../include/activitate.h"
 #include <iostream>
-
-#include "bodyguard.h"
-#include "tehnicianSunet.h"
+#include "../include/bodyguard.h"
+#include "../include/tehnicianSunet.h"
 
 int Concert::nrConcerte = 0;
 Concert::Concert(): Activitate(), locatie(), numarSpectatori(0), album(), echipaTehnica() {

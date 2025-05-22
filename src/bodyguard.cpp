@@ -1,6 +1,6 @@
 
-#include "persoana.h"
-#include "bodyguard.h"
+#include "../include/persoana.h"
+#include "../include/bodyguard.h"
 #include <string>
 #include <iostream>
 

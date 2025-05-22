@@ -1,9 +1,9 @@
-#include "album.h"
-#include "melodie.h"
+#include "../include/album.h"
+#include "../include/melodie.h"
 #include <iostream>
 #include <memory>
-#include "MelodieColaborativa.h"
-#include "MelodieSimpla.h"
+#include "../include/MelodieColaborativa.h"
+#include "../include/MelodieSimpla.h"
 
 int Album::nrAlbume = 0;
 Album::Album() : titlu("Album Necunoscut"), dataLansare(0),nrMelodii(0), melodii{}, calitateAlbum(0) {

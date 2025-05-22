@@ -1,6 +1,6 @@
 #include <iostream>
-#include "transport.h"
-#include "avion.h"
+#include "../include/transport.h"
+#include "../include/avion.h"
 
 Avion::Avion(): Transport(){}
 Avion::Avion(int costPeRunda, float fiabilitate): Transport(costPeRunda, fiabilitate){}

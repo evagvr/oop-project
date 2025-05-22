@@ -1,4 +1,4 @@
-#include "evenimente.h"
+#include "../include/evenimente.h"
 #include <iostream>
 #include <string>
 Eveniment::Eveniment(): descriere("necunoscuta"), modificareBuget(0)

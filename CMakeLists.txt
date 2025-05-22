@@ -1,39 +1,9 @@
 
-project(Poiectpoo)
-
-set(CMAKE_CXX_STANDARD 20)
-
-add_executable(Poiectpoo
-        main.cpp
-        persoana.cpp
-        muzician.cpp
-        manager2.cpp
-        producator.cpp
-        trupa.cpp
-        album.cpp
-        melodie.cpp
-        gameplay.cpp
-        concert.cpp
-        activitate.cpp
-        evenimente.cpp
-        turneu.cpp
-        bodyguard.cpp
-        tehnicianSunet.cpp
-        oras.cpp
-        transport.cpp
-        autocar.cpp
-        avion.cpp
-        MelodieColaborativa.cpp
-        MelodieSimpla.cpp
-        jucator.cpp
-        validation.cpp
-)
-=======
 cmake_minimum_required(VERSION 3.26)
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing executable name in this file
 # for now, the project name is used as the executable name
-set(MAIN_PROJECT_NAME "oop")
+set(MAIN_PROJECT_NAME "Proiectpoo")
 set(MAIN_EXECUTABLE_NAME "${MAIN_PROJECT_NAME}")
 
 
@@ -161,7 +131,37 @@ FetchContent_MakeAvailable(googletest)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES})
+add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
+                include/activitate.h
+                include/activitate.h
+                include/activitate.h
+                include/album.h
+                include/autocar.h
+                include/avion.h
+                include/bazaDateJoc.h
+                include/bodyguard.h
+                include/concert.h
+                include/evenimente.h
+                include/exceptii.h
+                include/gameplay.h
+                include/exceptii.h
+                include/gameplay.h
+                include/harta.h
+                include/inputHandler.h
+                include/jucator.h
+                include/manager2.h
+                include/melodie.h
+                include/MelodieColaborativa.h
+                include/MelodieSimpla.h
+                include/muzician.h
+                include/oras.h
+                include/persoana.h
+                include/producator.h
+                include/tehnicianSunet.h
+                include/transport.h
+                include/turneu.h
+                include/validation.h
+                )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
 # NOTE: RUN_SANITIZERS is optional, if it's not present it will default to true
@@ -208,4 +208,4 @@ endif()
 copy_files(FILES tastatura.txt COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
 # copy_files(FILES tastatura.txt config.json DIRECTORY images sounds COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
 # copy_files(DIRECTORY images sounds COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
->>>>>>> 83f41ed6597afd875e1d1a523fdee64d7293776a
+
