@@ -2,8 +2,16 @@
 #include <string>
 #include "../include/gameplay.h"
 #include "../include/inputHandler.h"
-
+#include "../include/exceptii.h"
+void testExceptie() {
+    try {
+        throw ExceptionNoMembersLeft();
+    } catch (const ExceptionNoMembersLeft& e) {
+        std::cout << "Prins: " << e.what() << std::endl;
+    }
+}
 int main() {
+    testExceptie();
     InputHandler verifInput;
     auto g = std::make_shared<Gameplay>();
     g->start();
@@ -11,6 +19,8 @@ int main() {
     g->incrementeazaAn();
 
     bool gameOver = false;
+
+
 
     while (!gameOver) {
         g->afisareDate();
