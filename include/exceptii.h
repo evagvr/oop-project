@@ -1,5 +1,3 @@
-//
-//
 
 #ifndef EXCEPTII_H
 #define EXCEPTII_H
@@ -41,11 +39,10 @@ public:
     }
 };
 
-class ExceptionNoMembersLeft : public std::exception {
+
+class ExceptionNoMembersLeft : public std::runtime_error {
 public:
-    const char* what () const noexcept override {
-        return "Trupa a ramas fara membri! S-a incheiat jocul";
-    }
+    ExceptionNoMembersLeft() : std::runtime_error("Trupa a ramas fara membri! S-a incheiat jocul") {}
 };
 
 
