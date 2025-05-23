@@ -6,14 +6,15 @@
 #include <vector>
 #include <string>
 #include "jucator.h"
+#include "../include/inputHandler.h"
 class Gameplay{
 private:
     int contorRepetitii;
+    InputHandler verifInput;
     std::shared_ptr<Jucator> jucator;
     std::shared_ptr<BazaDateJoc<Oras>> bazaDateLocatii;
     std::shared_ptr<BazaDateJoc<Persoana>> bazaDatePersoane;
 
-    // static const std::vector<std::shared_ptr<Eveniment>> evenimente;
     static const std::vector<std::shared_ptr<Transport>> modalitatiTransport;
 public:
     Gameplay();
@@ -25,17 +26,14 @@ public:
     template<typename T>
     std::shared_ptr<T> selecteazaModalitatiTransport() const;
     std::shared_ptr<Oras> selecteazaLocatieDupaId(const std::shared_ptr<Turneu>& turneu);
-    int calculeazaCostMinimTurneu();
     void afiseazaLocatiiDisponibile(const std::shared_ptr<Turneu>& turneu) const;
-    void adaugaPersoana(const std::shared_ptr<Persoana>& p);
+
     template<typename T>
     void afiseazaPersoaneSpecifice();
     template<typename T>
     std::shared_ptr<T> selecteazaPersoanaDupaId();
     void setup();
     void start();
-    void evenimentRandom();
-    void artistiiAdaugati(const std::vector <std::shared_ptr<Muzician>>& artisti);
     void afisareDate() const;
     void meniu() const;
     void incrementeazaAn();
@@ -43,8 +41,6 @@ public:
     void scadeBuget(int scadere);
     void crestePopularitate(int crestere);
     void scadePopularitate(int scadere);
-    void faliment();
-    void succes();
     bool terminareJoc() const;
     void repetitii();
     void inregistreazaAlbum();
@@ -56,7 +52,6 @@ public:
     bool reset();
     void raportFinal() const;
     bool aparDubluri(const std::shared_ptr<Muzician>& m);
-    static std::string citesteLit();
     static int citesteInt(int min, int max);
     static std::string validareString(const std::vector<std::string>& inputOptions);
 };

@@ -11,7 +11,6 @@
 #include "../include/MelodieColaborativa.h"
 #include "../include/avion.h"
 #include "../include/exceptii.h"
-#include "../include/harta.h"
 #include "../include/jucator.h"
 #include "../include/oras.h"
 #include "../include/bazaDateJoc.h"
@@ -28,19 +27,6 @@ int Gameplay::costMinimLocatie(const std::shared_ptr<Turneu>& turneu) {
   }
   return costMinim;
 }
-
-
-// const std::vector<std::shared_ptr<Eveniment>> Gameplay::evenimente = {
-//   std::make_shared<Eveniment>("Un membru a devenit viral pe Tiktok", 0,2,false),
-//   std::make_shared<Eveniment>("Unul dintre membri a avut un conflict si a parasit trupa", 0, -3, true),
-//   std::make_shared<Eveniment>("Trupa a aparut intr-un articol al unui critic celebru", 200, 10, false),
-//   std::make_shared<Eveniment>("A avut loc un scandal al trupei in public", 0, -5, false),
-//   std::make_shared<Eveniment>("Un membru a compus o piesa care a devenit celebra", 0, 5, false),
-//   std::make_shared<Eveniment>("A avut loc un FanMeet, fanii au fost foarte fericiti", 100, 8, false),
-//   std::make_shared<Eveniment>("Un membru a decis sa isi abandoneze cariera muzicala", 0, 0, true),
-//   std::make_shared<Eveniment>("Managerul a negociat un contract foarte avantajos", 5000, 0, false),
-//   std::make_shared<Eveniment>("A fost imprastiat un zvon fals despre un membru", 0, -5, false)
-// };
 
 template<typename T>
 void Gameplay::afiseazaModalitatiTransport() const {
@@ -70,7 +56,7 @@ std::shared_ptr<T> Gameplay::selecteazaModalitatiTransport() const{
 void Gameplay::afiseazaLocatiiDisponibile(const std::shared_ptr<Turneu>& turneu) const{
   //// de adaugat sa nu afiseze locatiile deja selectate
   auto orase = bazaDateLocatii->getItems();
-  for (int i = 0; i < orase.size(); i++ ) {
+  for (size_t i = 0; i < orase.size(); i++ ) {
     if (jucator->getBuget() >= orase[i]->calculeazaCosturi() && turneu->orasNeselectat(orase[i]))
       std::cout << i+1 << ".) " << orase[i] << std::endl;
   }
@@ -82,7 +68,7 @@ std::shared_ptr<Oras> Gameplay::selecteazaLocatieDupaId(const std::shared_ptr<Tu
     int optiune;
     std::cin.clear();
     std::cin >> optiune;
-    if (std::cin.fail() || optiune <= 0 || optiune > orase.size()) {
+    if (std::cin.fail() || optiune <= 0 || optiune > static_cast<int>(orase.size())) {
       std::cout << "Nu ai introdus o optiune corecta, mai incearca: " << std::endl;
       continue;
     }
@@ -97,7 +83,7 @@ std::shared_ptr<Oras> Gameplay::selecteazaLocatieDupaId(const std::shared_ptr<Tu
 
 template<typename T>
 void Gameplay::afiseazaPersoaneSpecifice() {
-  for (int i = 0; i < bazaDatePersoane->getItems().size(); i++) {
+  for (size_t i = 0; i < bazaDatePersoane->getItems().size(); i++) {
     if (typeid(*bazaDatePersoane->getItems()[i]) == typeid(T)) {
       std::cout << i+1 << ") ";
       bazaDatePersoane->getItems()[i]->afiseaza();
@@ -122,7 +108,7 @@ std::shared_ptr<T> Gameplay::selecteazaPersoanaDupaId() {
   while (true) {
     std::cin.clear();
     std::cin >> index;
-    if (std::cin.fail() || index - 1 < 0 || index - 1 >= bazaDatePersoane->getItems().size()) {
+    if (std::cin.fail() || index - 1 < 0 || index - 1 >= static_cast<int>(bazaDatePersoane->getItems().size())) {
       std::cout << "Nu ai introdus un input corect, mai incearca: ";
       continue;
     }
@@ -339,7 +325,7 @@ void Gameplay::inregistreazaAlbum() {
     std::cout << "Nu poti folosi mai mult de " << jucator->getBuget() << " (bugetul tau disponibil)"<< std::endl;
     std::cout<<"Raspunsul tau: ";
     int bugetulInvestit;
-    bugetulInvestit = citesteInt(500, jucator->getBuget());
+    bugetulInvestit = verifInput.getIntInput(500, jucator->getBuget());
     std::cout<<std::endl;
     scadeBuget(bugetulInvestit);
     std::cout << "Cate melodii vrei sa aibe albumul?" <<std::endl;
@@ -400,11 +386,11 @@ void Gameplay::modificaTrupa() {
   if (rasp == 1) {
     std::cout << "Membrii vor fi afisati de la cel mai priceput la cel mai putin priceput: " <<std::endl;
     std::vector<std::shared_ptr<Muzician>> top = jucator->getTrupa()->realizeazaIerarhie();
-    for (int i = 0; i < top.size(); i++) {
+    for (size_t i = 0; i < top.size(); i++) {
       std::cout <<i+1<<". "<< *top.at(i) <<std::endl;
     }
     std::cout << "Numarul membrului pe care vrei sa il elimini: ";
-    int opt = citesteInt(1,top.size());
+    int opt = verifInput.getIntInput(1,static_cast<int>(top.size()));
     jucator->getTrupa()->eliminaMembru(opt-1);
     std::cout << "Scrie \"c\" pentru a continua: ";
     validareString({"c"});
@@ -420,11 +406,11 @@ void Gameplay::modificaTrupa() {
   else if (rasp == 3 && jucator->getTrupa()->areMembriFosti()) {
     std::cout << "Membrii fosti disponibili: " << std::endl;
     auto membriFosti = jucator->getTrupa()->getMembriFosti();
-    for (int i = 0; i < membriFosti.size(); i++) {
+    for (size_t i = 0; i < membriFosti.size(); i++) {
       std::cout << i+1 << ". " << *membriFosti[i] << std::endl;
     }
     std::cout << "Alege numarul membrului pe care vrei sa il readuci: ";
-    int opt = citesteInt(1, membriFosti.size());
+    int opt = citesteInt(1, static_cast<int>(membriFosti.size()));
     jucator->getTrupa()->restaurareMembruFost(opt-1);
     std::cout << "Membrul a fost readus in trupa cu succes!" << std::endl;
     std::cout << "Scrie \"c\" pentru a continua: ";
@@ -568,7 +554,7 @@ void Gameplay::turneu() {
 }
 bool Gameplay::reset() {
   std::cout << "Esti sigur? Asta va sterge totul si nu se va putea recupera!" << std::endl;
-  std::cout << "Scrie \"da\" sau \"nu\": " << std::endl;
+  std::cout << "Scrie \"da/nu\": " << std::endl;
   std::string opt = validareString({"da", "nu"});
   if (opt == "da") {
     jucator->reset();
@@ -600,18 +586,7 @@ int Gameplay::citesteInt(int minim, int maxim) {
     }
   }
 }
-std::string Gameplay::citesteLit() {
-  std::string x;
-  while (true) {
-    std::getline(std::cin, x);
-    if (std::cin.fail() ||( x != "c" && x != "s") ) {
-      std::cin.clear();
-      std::cout << "Input invalid. Te rog introdu (s) sau (c) in functie de optiunea ta: ";
-    } else {
-      return x;
-    }
-  }
-}
+
 std::string Gameplay::validareString(const std::vector<std::string>& inputOptions) {
   std::string input;
   while (true) {

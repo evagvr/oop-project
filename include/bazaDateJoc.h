@@ -9,7 +9,7 @@ class BazaDateJoc {
 private:
     std::vector<std::shared_ptr<T>> items;
     BazaDateJoc() = default;
-    BazaDateJoc(const std::vector<std::shared_ptr<T>>& items) : items(items) {}
+    explicit BazaDateJoc(const std::vector<std::shared_ptr<T>>& items) : items(items) {}
     static std::shared_ptr<BazaDateJoc<T>> instance;  // Corectare: adăugat <T>
 public:
     static std::shared_ptr<BazaDateJoc<T>> getInstance() {
@@ -19,9 +19,7 @@ public:
         return instance;
     }
 
-    static void setInstance(std::shared_ptr<BazaDateJoc<T>>& i) {
-        instance = i;
-    }
+
 
     static std::shared_ptr<BazaDateJoc<T>> createInstance(const std::vector<std::shared_ptr<T>>& initialItems) {
         instance = std::shared_ptr<BazaDateJoc<T>>(new BazaDateJoc<T>(initialItems));

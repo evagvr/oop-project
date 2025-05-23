@@ -141,13 +141,11 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
                 include/bazaDateJoc.h
                 include/bodyguard.h
                 include/concert.h
-                include/evenimente.h
-                include/exceptii.h
+        include/exceptii.h
                 include/gameplay.h
                 include/exceptii.h
                 include/gameplay.h
-                include/harta.h
-                include/inputHandler.h
+        include/inputHandler.h
                 include/jucator.h
                 include/manager2.h
                 include/melodie.h
