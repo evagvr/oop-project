@@ -280,6 +280,7 @@ bool Gameplay::terminareJoc() const{
   try {
     jucator->verificaStatus();
     jucator->getTrupa()->verificaTrupa();
+    std::cout << "A fost facuta verificarea" << std::endl;
     return false;
   } catch (const ExceptionNoMembersLeft& e) {
     std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;

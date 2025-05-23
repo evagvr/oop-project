@@ -110,7 +110,9 @@ void Trupa::verificaTrupa() {
     }),
     membri.end()
     );
+  std::cout << "Au fost eliminati membrii cu skillLevel 0" << std::endl;
   if (membri.empty()) {
+    std::cout << "Trupa este goala" << std::endl;
     throw ExceptionNoMembersLeft();
   }
 
