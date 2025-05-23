@@ -279,13 +279,12 @@ void Gameplay::meniu() const{
 bool Gameplay::terminareJoc() const{
   try {
     jucator->verificaStatus();
-    jucator->getTrupa()->verificaTrupa();
+    if (!jucator->getTrupa()->verificaTrupa()) {
+      std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;
+      return true;
+    }
     std::cout << "A fost facuta verificarea" << std::endl;
     return false;
-  } catch (const ExceptionNoMembersLeft& e) {
-    std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;
-    std::cout << e.what() << std::endl;
-    return true;
   }catch (const ExceptionVictory& e) {
     std::cout << "===== Ai castigat! :)))) =====" << std::endl;
     std::cout << e.what() << std::endl;

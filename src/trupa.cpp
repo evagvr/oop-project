@@ -97,7 +97,7 @@ std::shared_ptr<Album> Trupa::selecteazaAlbum() const {
 
 }
 
-void Trupa::verificaTrupa() {
+bool Trupa::verificaTrupa() {
   for (const auto& membru: membri) {
     if (membru->obtineSkilllevel() == 0) {
       membru->afiseazaNume();
@@ -113,8 +113,9 @@ void Trupa::verificaTrupa() {
   std::cout << "Au fost eliminati membrii cu skillLevel 0" << std::endl;
   if (membri.empty()) {
     std::cout << "Trupa este goala" << std::endl;
-    throw ExceptionNoMembersLeft();
+    return false;
   }
+  return true;
 
 }
 

@@ -40,10 +40,6 @@ public:
 };
 
 
-class ExceptionNoMembersLeft : public std::runtime_error {
-public:
-    ExceptionNoMembersLeft() : std::runtime_error("Trupa a ramas fara membri! S-a incheiat jocul") {}
-};
 
 
 

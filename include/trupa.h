@@ -41,7 +41,7 @@ public:
   void adaugaMembru(std::shared_ptr<Muzician>& m);
   void selecteazaMembru();
   std::shared_ptr<Album> selecteazaAlbum() const;
-  void verificaTrupa();
+  bool verificaTrupa();
 
   void organizeazaConcert(Concert &c);
 
