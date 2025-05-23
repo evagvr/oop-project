@@ -40,7 +40,6 @@ public:
     void cresteBuget(int crestere);
     void scadeBuget(int scadere);
     void crestePopularitate(int crestere);
-    void scadePopularitate(int scadere);
     bool terminareJoc() const;
     void repetitii();
     void inregistreazaAlbum();

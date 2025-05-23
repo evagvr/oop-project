@@ -29,7 +29,6 @@ public:
     int calculeazaCosturi() override;
     void desfasoaraActivitate() override;
     int profit() const ;
-    void setareAlbum(const std::shared_ptr<Album>& a);
     static int getNrConcerte();
 
     friend std::ostream& operator<<(std::ostream& out, const Concert& c);

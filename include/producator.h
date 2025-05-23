@@ -16,14 +16,8 @@ public:
 
   void contributieTurneu() const;
   int calculeazaCost() const override;
-  int produceMelodie() const;
   int contributie() override;
   void contributieConcert();
-  void colaboreaza();
-  void devineIndisponibil();
-  void devineDisponibil();
-  bool esteDisponibil();
-  void cresteSucces();
   void cresteSuccesAnual();
   void cresteExperienta();
   void afiseaza() const override;

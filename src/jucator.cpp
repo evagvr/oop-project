@@ -55,9 +55,6 @@ void Jucator::afiseazaStatistici() const {
     std::cout << "Trupa nu a fost inca setata.\n";
 }
 
-void Jucator::avanseazaAnul() {
-  ++an;
-}
 
 void Jucator::reset() {
   buget = 1000;

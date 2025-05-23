@@ -30,23 +30,19 @@ public:
   std::vector<std::shared_ptr<Persoana>> echipa() const;
   bool areMembriFosti() const;
   void adaugaMembruFost(const std::shared_ptr<Muzician>& m);
-  std::vector<std::shared_ptr<Muzician>> getMembriFosti() const;
+  const std::vector<std::shared_ptr<Muzician>>& getMembriFosti() const;
   void restaurareMembruFost(int index);
 
   int calculeazaSkillLevelTrupa() const;
   std::shared_ptr<Melodie> creeazaMelodie();
   void inregistreazaAlbum(const std::shared_ptr<Album>& a);
   std::vector<std::shared_ptr<Muzician>> realizeazaIerarhie();
-  void statusTrupa() const;
   void eliminaMembru(int index);
-  void insereazaMembru(const std::shared_ptr<Muzician>& m);
   void adaugaMembru(std::shared_ptr<Muzician>& m);
   void selecteazaMembru();
-  std::shared_ptr<Muzician> maxim() const;
   std::shared_ptr<Album> selecteazaAlbum() const;
   void verificaTrupa();
 
-  int colaboreazaCuProducatorul();
   void organizeazaConcert(Concert &c);
 
   friend std::istream& operator>>(std::istream& in, Trupa& t);

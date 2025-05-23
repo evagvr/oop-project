@@ -36,6 +36,7 @@ Muzician& Muzician::operator=(const Muzician& other) {
     this->tipInstrument = other.tipInstrument;
     this->skillLevel = other.skillLevel;
     this->cooperativitate = other.cooperativitate;
+    this->ego = ego;
   }
   return *this;
 }
@@ -128,7 +129,7 @@ std::istream& operator>>(std::istream& in, Muzician& m){
     bool exista = false;
     for (const auto& p : persoane) {
       if (auto muz = std::dynamic_pointer_cast<Muzician>(p)) {
-        if (muz && *muz == m) {
+        if (*muz == m) {
           exista = true;
           break;
         }

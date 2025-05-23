@@ -9,7 +9,7 @@ class MelodieColaborativa: public Melodie {
 private:
   std::shared_ptr<Muzician> artistColaborator;
 public:
-  MelodieColaborativa(int skillLevelMuzician);
+  explicit MelodieColaborativa(int skillLevelMuzician);
   MelodieColaborativa(const std::string& titlu, const std::string& genMuzical, const std::shared_ptr<Muzician>& artistColaborator);
   ~MelodieColaborativa() override;
 

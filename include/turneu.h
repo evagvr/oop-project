@@ -41,7 +41,6 @@ public:
     static void afiseazaModalitatiTransport();
     static std::shared_ptr<Transport> selecteazaModalitatiTransport();
     void selecteazaTransport();
-    static int aflaCostMinim();
     void angajeazaPersonal(const std::shared_ptr<Persoana>& p);
     float calculeazaNrSpectatori(int nrRunda, int& nrSpectatori) const;
     int calculeazaCosturi() override;

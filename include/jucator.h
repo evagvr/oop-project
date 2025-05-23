@@ -31,7 +31,6 @@ class Jucator {
   void construiesteTrupa();
 
   void afiseazaStatistici() const;
-  void avanseazaAnul();
   void reset();
 
 };

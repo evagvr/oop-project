@@ -42,7 +42,7 @@ std::shared_ptr<T> Gameplay::selecteazaModalitatiTransport() const{
   while (true) {
     std::cin.clear();
     std::cin >> opt;
-    if (std::cin.fail() || opt <= 0 || opt > modalitatiTransport.size()) {
+    if (std::cin.fail() || opt <= 0 || opt > static_cast<int>(modalitatiTransport.size())) {
       std::cout << "Optiunea ta nu exista." << std::endl;
       continue;
     }
@@ -84,7 +84,8 @@ std::shared_ptr<Oras> Gameplay::selecteazaLocatieDupaId(const std::shared_ptr<Tu
 template<typename T>
 void Gameplay::afiseazaPersoaneSpecifice() {
   for (size_t i = 0; i < bazaDatePersoane->getItems().size(); i++) {
-    if (typeid(*bazaDatePersoane->getItems()[i]) == typeid(T)) {
+    auto& ref = *bazaDatePersoane->getItems()[i];
+    if (typeid(ref) == typeid(T)) {
       std::cout << i+1 << ") ";
       bazaDatePersoane->getItems()[i]->afiseaza();
       std::cout << std::endl;
@@ -112,7 +113,8 @@ std::shared_ptr<T> Gameplay::selecteazaPersoanaDupaId() {
       std::cout << "Nu ai introdus un input corect, mai incearca: ";
       continue;
     }
-    if (typeid(*bazaDatePersoane->getItems()[index-1]) != typeid(T)) {
+    auto& ref = *bazaDatePersoane->getItems()[index-1];
+    if (typeid(ref) != typeid(T)) {
       std::cout << "Persoana de la indexul " << index << " nu este de tipul cerut, mai incearca: ";
       continue;
     }
@@ -125,8 +127,7 @@ std::shared_ptr<T> Gameplay::selecteazaPersoanaDupaId() {
     return std::dynamic_pointer_cast<T>(bazaDatePersoane->getItems()[index-1]);
   }
 }
-Gameplay::Gameplay(): contorRepetitii(0){
-  bazaDateLocatii = BuilderBazaDateJoc<Oras>()
+Gameplay::Gameplay(): contorRepetitii(0), bazaDateLocatii ( BuilderBazaDateJoc<Oras>()
   .adaugaItem(std::make_shared<Oras>("Bucuresti", 0.5, 300, 9000, 0))
   .adaugaItem(std::make_shared<Oras>("Cluj-Napoca", 0.8, 300, 10000, 0.1))
   .adaugaItem(std::make_shared<Oras>("Timisoara", 0.4, 100, 5000, 0))
@@ -147,8 +148,7 @@ Gameplay::Gameplay(): contorRepetitii(0){
   .adaugaItem(std::make_shared<Oras>("Atena", 0.4, 400, 7500, 0.2))
   .adaugaItem(std::make_shared<Oras>("Lisabona", 0.3, 300, 8000, 0.3))
   .adaugaItem(std::make_shared<Oras>("Stockholm", 0.4, 300, 7000, 0.2))
-  .build();
-  bazaDatePersoane = BuilderBazaDateJoc<Persoana>()
+  .build()), bazaDatePersoane ( BuilderBazaDateJoc<Persoana>()
   .adaugaItem(std::make_shared<Manager>("Gheorghe", "Cristian", 25, 150, 3, 10))
   .adaugaItem(std::make_shared<Manager>("Stoinescu", "Valentina", 23,  100, 2, 6))
   .adaugaItem(std::make_shared<Manager>("Neacsu", "Rares", 24, 100, 2, 3))
@@ -170,8 +170,7 @@ Gameplay::Gameplay(): contorRepetitii(0){
   .adaugaItem(std::make_shared<Bodyguard>("Marian","Ovidiu", 30, 400, 25))
   .adaugaItem(std::make_shared<Bodyguard>("Gheorghe", "Sergiu", 40, 500, 30))
   .adaugaItem(std::make_shared<Bodyguard>("Simion", "Alin", 41, 500, 29))
-  .build();
-}
+  .build()) {}
 
 Gameplay::~Gameplay() = default;
 
@@ -263,10 +262,7 @@ void Gameplay::crestePopularitate(int crestere){
   jucator->schimbaPopularitate(crestere);
   std::cout << "+ " << crestere << " popularitate"<<std::endl;
 }
-void Gameplay::scadePopularitate(int scadere){
-  jucator->schimbaPopularitate(-scadere);
-  std::cout << "- " << scadere << " popularitate"<<std::endl;
-}
+
 void Gameplay::meniu() const{
   std::cout << "1. Repetitii cu trupa" << std::endl;
   std::cout << "2. Inregistreaza album" << std::endl;

@@ -10,9 +10,7 @@
 #include <list>
 int Turneu::nrTurnee = 0;
 const int Turneu::COST_MINIM = 10900;
-int Turneu::aflaCostMinim() {
-  return COST_MINIM;
-}
+
 Turneu::Turneu(): Activitate(){
   durata = 0;
   this->bileteVandute = 0;
@@ -55,10 +53,10 @@ std::shared_ptr<Transport> Turneu::selecteazaModalitatiTransport(){
   }
 }
 int Turneu::calculeazaProfit() const {
-  return static_cast<int>(PRET_BILET*bileteVandute*(succes/100.0f));
+  return static_cast<int>(static_cast<float>(PRET_BILET*bileteVandute)*(static_cast<float>(succes)/100.0));
 }
 int Turneu::calculeazaPopularitate(int popularitate) const{
-  return static_cast<int>((succes/100.0f) * popularitate);
+  return static_cast<int>((static_cast<float>(succes)/100.0) * static_cast<float>(popularitate));
 }
 void Turneu::angajeazaPersonal(const std::shared_ptr<Persoana>& p) {
   if (typeid(*p)  == typeid(TehnicianSunet) || typeid(*p) == typeid(Bodyguard)) {
@@ -67,7 +65,7 @@ void Turneu::angajeazaPersonal(const std::shared_ptr<Persoana>& p) {
   }
 }
 float Turneu::calculeazaNrSpectatori(int nrRunda, int& nrSpectatori) const {
-  float estimare = orase[nrRunda]->aflaPopularitate() * orase[nrRunda]->aflaLocuriDisponibile();
+  auto estimare = orase[nrRunda]->aflaPopularitate() * static_cast<float>(orase[nrRunda]->aflaLocuriDisponibile());
   nrSpectatori = static_cast<int>(estimare);
   return static_cast<float>(nrSpectatori)/static_cast<float>(orase[nrRunda]->aflaLocuriDisponibile());
 }
@@ -85,7 +83,7 @@ void Turneu::adaugaLocatie(const std::shared_ptr<Oras> &o) {
 }
 
 bool Turneu::orasNeselectat(const std::shared_ptr<Oras>& o) const {
-  if (orase.size() != 0) {
+  if (static_cast<int>(orase.size()) != 0) {
     for (const auto& oras: orase) {
       if (*oras == *o) {
         return false;
@@ -135,9 +133,9 @@ void Turneu::desfasoaraActivitate(){
   }
 }
 void Turneu::calculeazaSuccesRunda(int nrRunda, float raportPrezenta, int contributieTehnician, int contributieBodyguard) {
-  float t = contributieTehnician/100.0f;
-  float b = contributieBodyguard/100.0f;
-  succes += static_cast<int>(((t + b + raportPrezenta)/ 3.0f)*100.0f);
+  auto t = static_cast<float>(contributieTehnician)/100.0;
+  auto b = static_cast<float>(contributieBodyguard)/100.0;
+  succes += static_cast<int>(((t + b + raportPrezenta)/ 3.0)*100.0);
   std::cout << "Succesul final al rundei "<< nrRunda + 1<<" a fost de " << succes << std::endl;
 }
 std::istream& operator>>(std::istream& in, Turneu& turneu){

@@ -17,13 +17,14 @@ Concert::Concert( int succes, const std::shared_ptr<Oras>& locatie, const std::s
 }
 Concert::~Concert() = default;
 void Concert::angajeazaPersonal(const std::shared_ptr<Persoana>& p) {
-  if (typeid(*p) == typeid(TehnicianSunet) || typeid(*p) == typeid(Bodyguard)) {
+  auto& ref = *p;
+  if (typeid(ref) == typeid(TehnicianSunet) || typeid(ref) == typeid(Bodyguard)) {
     echipaTehnica.push_back(p);
     std::cout << "Angajatul a fost adaugat in echipa tehnica" << std::endl;
   }
 }
 float Concert::calculeazaNrSpectatori() {
-  float estimare = locatie->aflaPopularitate() * locatie->aflaLocuriDisponibile();
+  auto estimare = locatie->aflaPopularitate() * static_cast<float>(locatie->aflaLocuriDisponibile());
   numarSpectatori = static_cast<int>(estimare);
   return static_cast<float>(numarSpectatori)/static_cast<float>(locatie->aflaLocuriDisponibile());
 }
@@ -46,29 +47,27 @@ void Concert::desfasoaraActivitate() {
   int contributieTehnician = 0;
   int contributieBodyguard = 0;
   for (const auto& p : echipaTehnica) {
-    if (typeid(*p) == typeid(TehnicianSunet)) {
+    auto& ref = *p;
+    if (typeid(ref) == typeid(TehnicianSunet)) {
       contributieTehnician = p->contributie();
     }
-    else if (typeid(*p) == typeid(Bodyguard)) {
+    else if (typeid(ref) == typeid(Bodyguard)) {
       contributieBodyguard = p->contributie();
     }
   }
   calculeazaSucces(raportPrezenta, contributieTehnician, contributieBodyguard);
 }
 void Concert::calculeazaSucces(float raportPrezenta, int contributieTehnician, int contributieBodyguard) {
-  float t = contributieTehnician/100.0f;
-  float b = contributieBodyguard/100.0f;
+  float t = static_cast<float>(contributieTehnician)/100.0f;
+  float b = static_cast<float>(contributieBodyguard)/100.0f;
   succes = static_cast<int>(((t + b + raportPrezenta)/ 3.0f)*100.0f);
   std::cout << "Succesul final al concertului a fost de " << succes << std::endl;
 }
-void Concert::setareAlbum(const std::shared_ptr<Album> &a) {
-  this->album = a;
-}
 int Concert::profit() const {
-  return static_cast<int>(PRET_BILET*numarSpectatori*(succes/100.0f));
+  return static_cast<int>(static_cast<float>(PRET_BILET*numarSpectatori)*(static_cast<float>(succes)/100.0f));
 }
 int Concert::crestePopularitatea(int popularitate) const{
-  return static_cast<int>((succes/100.0f) * popularitate);
+  return static_cast<int>((static_cast<float>(succes)/100.0) * static_cast<float>(popularitate));
 }
 int Concert::getNrConcerte() {
   return nrConcerte;

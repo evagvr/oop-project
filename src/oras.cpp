@@ -1,8 +1,7 @@
 #include "../include/oras.h"
 #include <iostream>
 
-Oras::Oras() {
-  nume = "necunoscut";
+Oras::Oras() : nume("necunoscut"){
   popularitateTrupa = 0;
   capacitatePublic = 0;
   costuriLogistice = 0;

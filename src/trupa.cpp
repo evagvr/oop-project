@@ -34,17 +34,13 @@ Trupa& Trupa::operator=(const Trupa& other) {
 }
 Trupa::~Trupa() = default;
 
-
-void Trupa::insereazaMembru(const std::shared_ptr<Muzician>& m){
-  membri.push_back(m);
-}
 int Trupa::calculeazaSkillLevelTrupa() const {
   /// deschimbat astfel incat calitatea albumului sa fie influentata si de producator
   int medieSkilllevel = 0;
   for (const auto& membru: this->membri) {
     medieSkilllevel+= membru->obtineSkilllevel();
   }
-  medieSkilllevel = medieSkilllevel / membri.size();
+  medieSkilllevel = medieSkilllevel / static_cast<int>(membri.size());
   return medieSkilllevel;
 }
 std::vector<std::shared_ptr<Persoana>> Trupa::echipa() const {
@@ -76,13 +72,6 @@ void Trupa::inregistreazaAlbum(const std::shared_ptr<Album>& a){
   albume.push_back(a);
 }
 
-int Trupa::colaboreazaCuProducatorul(){
-  return producator->contributie();
-}
-void Trupa::statusTrupa() const{
-  for (const auto& membru : this->membri)
-    membru->status();
-}
 void Trupa::adaugaMembru(std::shared_ptr<Muzician>& m) {
   this->realizeazaIerarhie();
   std::cout << *this->membri[0];
@@ -95,13 +84,7 @@ void Trupa::adaugaMembru(std::shared_ptr<Muzician>& m) {
   else
     std::cout << "Din pacate artistul selectat este prea avansat pentru trupa si nu a acceptat" << std::endl;
 }
-std::shared_ptr<Muzician> Trupa::maxim() const {
-  std::shared_ptr<Muzician> it = membri.at(0);
-  for (const auto& membru : this->membri)
-    if (*membru > *it)
-      it = membru;
-  return it;
-}
+
 
 std::shared_ptr<Album> Trupa::selecteazaAlbum() const {
   std::cout << "Selecteaza ce album vrei sa fie prezentat in cadrul concertului" << std::endl;
@@ -141,7 +124,7 @@ void Trupa::adaugaMembruFost(const std::shared_ptr<Muzician>& m) {
   membriFosti.push_back(m);
 }
 
-std::vector<std::shared_ptr<Muzician>> Trupa::getMembriFosti() const {
+const std::vector<std::shared_ptr<Muzician>>& Trupa::getMembriFosti() const {
   return membriFosti;
 }
 
@@ -178,14 +161,14 @@ std::istream& operator>>(std::istream& in, Trupa& t){
 
   std::cout << "Optiunea ta: ";
   int optiune;
-  optiune = Gameplay::citesteInt(1, manageriDisponibili.size());
+  optiune = Gameplay::citesteInt(1, static_cast<int>(manageriDisponibili.size()));
   t.manager = manageriDisponibili[optiune-1];
   std::cout << "Alege un producator: " << std:: endl;
   for (size_t i = 0; i < producatoriDisponibili.size(); i++) {
     std::cout << i+1 << ") "<< *producatoriDisponibili[i];
   }
   std::cout << "Optiunea ta: ";
-  optiune = Gameplay::citesteInt(1, producatoriDisponibili.size());
+  optiune = Gameplay::citesteInt(1, static_cast<int>(producatoriDisponibili.size()));
   t.producator = producatoriDisponibili[optiune-1];
   std::vector<std::shared_ptr<Muzician>> membriiAlesi;
   std::cout << "Acum vei avea de ales 3 membrii ai trupei" << std::endl;
@@ -199,7 +182,7 @@ std::istream& operator>>(std::istream& in, Trupa& t){
     bool valid = false;
     while (!valid) {
       try{
-        optiune = Gameplay::citesteInt(1, muzicieniDisponibili.size());
+        optiune = Gameplay::citesteInt(1, static_cast<int>(muzicieniDisponibili.size()));
       auto selectat = muzicieniDisponibili[optiune - 1];
 
       auto exista = std::find_if(
@@ -214,9 +197,9 @@ std::istream& operator>>(std::istream& in, Trupa& t){
       }
       t.membri.push_back(selectat);
       valid = true;
-      } catch (const ExceptieMembruDuplicat& e) {
+      } catch (const ExceptieMembruDuplicat& ) {
         std::cout << "Membru deja in trupa. Reincearca: ";
-      } catch(const std::exception& e){
+      } catch(const std::exception& ){
         std::cout << "Eroare la citirea optiunii. Reincearca: ";
       }
     }

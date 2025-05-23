@@ -28,17 +28,13 @@ ProducatorMuzical& ProducatorMuzical::operator=(const ProducatorMuzical& other){
   }
   return *this;
 }
-ProducatorMuzical::~ProducatorMuzical(){}
+ProducatorMuzical::~ProducatorMuzical() = default;
 
-int ProducatorMuzical::produceMelodie() const{
-  return experienta*2 + succese;
-}
+
 int ProducatorMuzical::contributie() {
   return int((experienta + succese)/2);
 }
-void ProducatorMuzical::cresteSucces() {
-  succese++;
-}
+
 void ProducatorMuzical::cresteExperienta() {
   experienta++;
 }
