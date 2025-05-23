@@ -59,7 +59,8 @@ int Turneu::calculeazaPopularitate(int popularitate) const{
   return static_cast<int>((static_cast<float>(succes)/100.0) * static_cast<float>(popularitate));
 }
 void Turneu::angajeazaPersonal(const std::shared_ptr<Persoana>& p) {
-  if (typeid(*p)  == typeid(TehnicianSunet) || typeid(*p) == typeid(Bodyguard)) {
+  const auto& ref = *p;
+  if (typeid(ref)  == typeid(TehnicianSunet) || typeid(ref) == typeid(Bodyguard)) {
     echipaTurneu.push_back(p);
     std::cout << "Angajatul a fost adaugat cu succes" <<std::endl;
   }
@@ -122,10 +123,11 @@ void Turneu::desfasoaraActivitate(){
     int contributieTehnician = 0;
     int contributieBodyguard = 0;
     for (const auto& p : echipaTurneu) {
-      if (typeid(*p) == typeid(TehnicianSunet)) {
+      const auto& ref = *p;
+      if (typeid(ref) == typeid(TehnicianSunet)) {
         contributieTehnician = p->contributie();
       }
-      else if (typeid(*p) == typeid(Bodyguard)) {
+      else if (typeid(ref) == typeid(Bodyguard)) {
         contributieBodyguard = p->contributie();
       }
     }
