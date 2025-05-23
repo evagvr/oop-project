@@ -17,7 +17,7 @@ Concert::Concert( int succes, const std::shared_ptr<Oras>& locatie, const std::s
 }
 Concert::~Concert() = default;
 void Concert::angajeazaPersonal(const std::shared_ptr<Persoana>& p) {
-  auto& ref = *p;
+  const auto& ref = *p;
   if (typeid(ref) == typeid(TehnicianSunet) || typeid(ref) == typeid(Bodyguard)) {
     echipaTehnica.push_back(p);
     std::cout << "Angajatul a fost adaugat in echipa tehnica" << std::endl;
@@ -31,10 +31,11 @@ float Concert::calculeazaNrSpectatori() {
 int Concert::calculeazaCosturi(){
     costConcert += locatie->calculeazaCosturi();
     for (const auto& p : echipaTehnica) {
-      if (typeid(*p) == typeid(TehnicianSunet)) {
+      const auto& ref = *p;
+      if (typeid(ref) == typeid(TehnicianSunet)) {
         costConcert+= p->calculeazaCost();
       }
-      if (typeid(*p) == typeid(Bodyguard)) {
+      if (typeid(ref) == typeid(Bodyguard)) {
         costConcert+= p->calculeazaCost();
       }
     }
@@ -47,7 +48,7 @@ void Concert::desfasoaraActivitate() {
   int contributieTehnician = 0;
   int contributieBodyguard = 0;
   for (const auto& p : echipaTehnica) {
-    auto& ref = *p;
+    const auto& ref = *p;
     if (typeid(ref) == typeid(TehnicianSunet)) {
       contributieTehnician = p->contributie();
     }

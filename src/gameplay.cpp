@@ -84,7 +84,7 @@ std::shared_ptr<Oras> Gameplay::selecteazaLocatieDupaId(const std::shared_ptr<Tu
 template<typename T>
 void Gameplay::afiseazaPersoaneSpecifice() {
   for (size_t i = 0; i < bazaDatePersoane->getItems().size(); i++) {
-    auto& ref = *bazaDatePersoane->getItems()[i];
+    const auto& ref = *bazaDatePersoane->getItems()[i];
     if (typeid(ref) == typeid(T)) {
       std::cout << i+1 << ") ";
       bazaDatePersoane->getItems()[i]->afiseaza();
@@ -113,7 +113,7 @@ std::shared_ptr<T> Gameplay::selecteazaPersoanaDupaId() {
       std::cout << "Nu ai introdus un input corect, mai incearca: ";
       continue;
     }
-    auto& ref = *bazaDatePersoane->getItems()[index-1];
+    const auto& ref = *bazaDatePersoane->getItems()[index-1];
     if (typeid(ref) != typeid(T)) {
       std::cout << "Persoana de la indexul " << index << " nu este de tipul cerut, mai incearca: ";
       continue;

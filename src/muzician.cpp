@@ -36,7 +36,7 @@ Muzician& Muzician::operator=(const Muzician& other) {
     this->tipInstrument = other.tipInstrument;
     this->skillLevel = other.skillLevel;
     this->cooperativitate = other.cooperativitate;
-    this->ego = ego;
+    this->ego = other.ego;
   }
   return *this;
 }
