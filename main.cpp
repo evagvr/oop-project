@@ -10,7 +10,9 @@ int main() {
     g->setup();
     g->incrementeazaAn();
 
-    while (true) {
+    bool gameOver = false;
+
+    while (!gameOver) {
         g->afisareDate();
         g->meniu();
         std::string opt = verifInput.getStringInput({"1", "2", "3", "4", "5", "6", "7", "r", "n"});
@@ -46,11 +48,11 @@ int main() {
                 g->incrementeazaAn();
             }
         }
-
-        if (g->terminareJoc()) {
+        gameOver = g->terminareJoc();
+        if (gameOver) {
             g->raportFinal();
-            break;
         }
     }
-    return 0;
+
+
 }
