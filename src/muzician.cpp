@@ -1,4 +1,5 @@
 #include "../include/muzician.h"
+#include "../include/inputHandler.h"
 #include <iostream>
 #include <random>
 
@@ -103,19 +104,23 @@ bool Muzician::operator==(const Muzician& other) const {
 }
 
 std::istream& operator>>(std::istream& in, Muzician& m){
+  InputHandler verifInput;
   bool valid = false;
   while (!valid) {
     std::cout << "Nume: ";
     in >> m.nume;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "\nPrenume: ";
     in >> m.prenume;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "\nVarsta (numar intre 18 - 60): ";
-    m.varsta = Gameplay::citesteInt(18, 60);
+    m.varsta = verifInput.getIntInput(18, 60);
     std::cout << "\nNume de Scena: ";
     in >> m.numeScena;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "\nTip Instrument: ";
     std::cout << "\n1. Voce  2. Chitara  3. Tobe" <<std::endl;
-    int optiune = Gameplay::citesteInt(1,3);
+    int optiune = verifInput.getIntInput(1,3);
     if (optiune == 1) {
       m.tipInstrument = "voce";
     }

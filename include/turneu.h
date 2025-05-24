@@ -42,7 +42,7 @@ public:
     static std::shared_ptr<Transport> selecteazaModalitatiTransport();
     void selecteazaTransport();
     void angajeazaPersonal(const std::shared_ptr<Persoana>& p);
-    float calculeazaNrSpectatori(int nrRunda, int& nrSpectatori) const;
+    float calculeazaNrSpectatori(int nrRunda, int& nrSpectatori);
     int calculeazaCosturi() override;
     void desfasoaraActivitate() override;
     static int getNrTurnee();

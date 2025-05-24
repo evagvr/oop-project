@@ -42,6 +42,7 @@ std::shared_ptr<T> Gameplay::selecteazaModalitatiTransport() const{
   while (true) {
     std::cin.clear();
     std::cin >> opt;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     if (std::cin.fail() || opt <= 0 || opt > static_cast<int>(modalitatiTransport.size())) {
       std::cout << "Optiunea ta nu exista." << std::endl;
       continue;
@@ -57,17 +58,21 @@ void Gameplay::afiseazaLocatiiDisponibile(const std::shared_ptr<Turneu>& turneu)
   //// de adaugat sa nu afiseze locatiile deja selectate
   auto orase = bazaDateLocatii->getItems();
   for (size_t i = 0; i < orase.size(); i++ ) {
-    if (jucator->getBuget() >= orase[i]->calculeazaCosturi() && turneu->orasNeselectat(orase[i]))
-      std::cout << i+1 << ".) " << orase[i] << std::endl;
+    if (jucator->getBuget() >= orase[i]->calculeazaCosturi() && turneu->orasNeselectat(orase[i])) {
+      std::cout << i+1 << ".) ";
+      orase[i]->afiseazaInfo();
+      std::cout << std::endl;
+    }
   }
   std::cout << "Selecteaza locatia care te intereseaza: ";
 }
-std::shared_ptr<Oras> Gameplay::selecteazaLocatieDupaId(const std::shared_ptr<Turneu>& turneu) {
+std::shared_ptr<Oras> Gameplay::selecteazaLocatie(const std::shared_ptr<Turneu>& turneu) {
   auto orase = bazaDateLocatii->getItems();
   while (true) {
     int optiune;
     std::cin.clear();
     std::cin >> optiune;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     if (std::cin.fail() || optiune <= 0 || optiune > static_cast<int>(orase.size())) {
       std::cout << "Nu ai introdus o optiune corecta, mai incearca: " << std::endl;
       continue;
@@ -109,6 +114,7 @@ std::shared_ptr<T> Gameplay::selecteazaPersoanaDupaId() {
   while (true) {
     std::cin.clear();
     std::cin >> index;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     if (std::cin.fail() || index - 1 < 0 || index - 1 >= static_cast<int>(bazaDatePersoane->getItems().size())) {
       std::cout << "Nu ai introdus un input corect, mai incearca: ";
       continue;
@@ -128,26 +134,26 @@ std::shared_ptr<T> Gameplay::selecteazaPersoanaDupaId() {
   }
 }
 Gameplay::Gameplay(): contorRepetitii(0), bazaDateLocatii ( BuilderBazaDateJoc<Oras>()
-  .adaugaItem(std::make_shared<Oras>("Bucuresti", 0.5, 300, 9000, 0))
-  .adaugaItem(std::make_shared<Oras>("Cluj-Napoca", 0.8, 300, 10000, 0.1))
-  .adaugaItem(std::make_shared<Oras>("Timisoara", 0.4, 100, 5000, 0))
-  .adaugaItem(std::make_shared<Oras>("Iasi", 0.6, 200, 8000, 0.1))
-  .adaugaItem(std::make_shared<Oras>("Brasov", 0.53, 100, 6000, 0.1))
-  .adaugaItem(std::make_shared<Oras>("Constanta", 0.7, 200, 7000, 0))
-  .adaugaItem(std::make_shared<Oras>("Sibiu", 0.5, 300, 6000, 0.3))
-  .adaugaItem(std::make_shared<Oras>("Oradea", 0.7, 200, 5000, 0.1))
-  .adaugaItem(std::make_shared<Oras>("Londra", 0.3, 600, 12000, 0.6))
-  .adaugaItem(std::make_shared<Oras>("Paris", 0.3, 700, 11000, 0.4))
-  .adaugaItem(std::make_shared<Oras>("Berlin", 0.2, 600, 10000, 0.4))
-  .adaugaItem(std::make_shared<Oras>("Roma", 0.4, 700, 11000, 0.2))
-  .adaugaItem(std::make_shared<Oras>("Madrid", 0.2, 400, 12000, 0.5))
-  .adaugaItem(std::make_shared<Oras>("Amsterdam", 0.3, 500, 10000, 0.5))
-  .adaugaItem(std::make_shared<Oras>("Praga", 0.3, 400, 9000, 0.1))
-  .adaugaItem(std::make_shared<Oras>("Viena", 0.1, 500, 10000, 0.5))
-  .adaugaItem(std::make_shared<Oras>("Budapesta", 0.4, 400, 8000, 0.1))
-  .adaugaItem(std::make_shared<Oras>("Atena", 0.4, 400, 7500, 0.2))
-  .adaugaItem(std::make_shared<Oras>("Lisabona", 0.3, 300, 8000, 0.3))
-  .adaugaItem(std::make_shared<Oras>("Stockholm", 0.4, 300, 7000, 0.2))
+  .adaugaItem(std::make_shared<Oras>("Bucuresti", 0.5, 300, 4000, 0))
+  .adaugaItem(std::make_shared<Oras>("Cluj-Napoca", 0.8, 300, 5000, 0.1))
+  .adaugaItem(std::make_shared<Oras>("Timisoara", 0.4, 100, 3000, 0))
+  .adaugaItem(std::make_shared<Oras>("Iasi", 0.6, 200, 4000, 0.1))
+  .adaugaItem(std::make_shared<Oras>("Brasov", 0.53, 100, 4000, 0.1))
+  .adaugaItem(std::make_shared<Oras>("Constanta", 0.7, 200, 4000, 0))
+  .adaugaItem(std::make_shared<Oras>("Sibiu", 0.5, 300, 5000, 0.3))
+  .adaugaItem(std::make_shared<Oras>("Oradea", 0.7, 200, 3000, 0.1))
+  .adaugaItem(std::make_shared<Oras>("Londra", 0.3, 600, 7000, 0.6))
+  .adaugaItem(std::make_shared<Oras>("Paris", 0.3, 700, 8000, 0.4))
+  .adaugaItem(std::make_shared<Oras>("Berlin", 0.2, 600, 7000, 0.4))
+  .adaugaItem(std::make_shared<Oras>("Roma", 0.4, 700, 7000, 0.2))
+  .adaugaItem(std::make_shared<Oras>("Madrid", 0.2, 400, 6000, 0.5))
+  .adaugaItem(std::make_shared<Oras>("Amsterdam", 0.3, 500, 6000, 0.5))
+  .adaugaItem(std::make_shared<Oras>("Praga", 0.3, 400, 5000, 0.1))
+  .adaugaItem(std::make_shared<Oras>("Viena", 0.1, 500, 7000, 0.5))
+  .adaugaItem(std::make_shared<Oras>("Budapesta", 0.4, 400, 4000, 0.1))
+  .adaugaItem(std::make_shared<Oras>("Atena", 0.4, 400, 5500, 0.2))
+  .adaugaItem(std::make_shared<Oras>("Lisabona", 0.3, 300, 4500, 0.3))
+  .adaugaItem(std::make_shared<Oras>("Stockholm", 0.4, 300, 5000, 0.2))
   .build()), bazaDatePersoane ( BuilderBazaDateJoc<Persoana>()
   .adaugaItem(std::make_shared<Manager>("Gheorghe", "Cristian", 25, 150, 3, 10))
   .adaugaItem(std::make_shared<Manager>("Stoinescu", "Valentina", 23,  100, 2, 6))
@@ -221,14 +227,13 @@ void Gameplay::incrementeazaAn(){
   if (jucator->getAnCurent() > 1) {
     for (const auto& persoana : jucator->getTrupa()->echipa()) {
       if (auto m = std::dynamic_pointer_cast<Manager>(persoana)) {
-        m->cresteExperienta();
+        m->cresteriAnuale();
         jucator->schimbaBuget(-m->calculeazaCost());
         std::cout << "-" << m->calculeazaCost() << "$ (plata Manager)" << std::endl;
         jucator->schimbaPopularitate(m->influenteazaJoc());
         std::cout << "+" << m->influenteazaJoc() << " popularitate"<< std::endl;
       } else if (auto p = std::dynamic_pointer_cast<ProducatorMuzical>(persoana)) {
-        p->cresteExperienta();
-        p->cresteSuccesAnual();
+        p->cresteriAnuale();
         jucator->schimbaBuget(-p->calculeazaCost());
         std::cout << "-" << p->calculeazaCost() << "$ (plata Producator Muzical)" << std::endl;
         if (p->influenteazaJoc() > 0) {
@@ -353,11 +358,22 @@ void Gameplay::inregistreazaAlbum() {
     std::cout << "Denumirea albumului: ";
     std::string titlu;
     std::cin >> titlu;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::shared_ptr<Album> a = std::make_shared<Album>(titlu, jucator->getAnCurent(), nrMelodii, melodii);
     jucator->getTrupa()->inregistreazaAlbum(a);
-    a->calculeazaCalitateAlbum(jucator->getTrupa()->calculeazaSkillLevelTrupa());
-    crestePopularitate(a->stabilesteCresterePopularitate());
-    cresteBuget(a->stabilesteProfit(bugetulInvestit));
+    int contributieManager = 0;
+    int contributieProducator = 0;
+    for (const auto& pers: jucator->getTrupa()->echipa()) {
+      if (auto prod = std::dynamic_pointer_cast<ProducatorMuzical>(pers)) {
+        contributieProducator = prod->contributie();
+      }
+      else if (auto man = std::dynamic_pointer_cast<Manager>(pers)) {
+        contributieManager = man->contributie();
+      }
+    }
+    a->calculeazaCalitateAlbum(jucator->getTrupa()->calculeazaSkillLevelTrupa(), contributieProducator);
+    crestePopularitate(a->stabilesteCresterePopularitate(contributieManager));
+    cresteBuget(a->stabilesteProfit(bugetulInvestit, contributieManager));
     std::cout << *a;
   }
   std::cout << "Scrie \"c\" pentru a continua: ";
@@ -375,7 +391,7 @@ void Gameplay::modificaTrupa() {
   std::cout << "1. Vrei sa elimini un membru"<<std::endl;
   std::cout << "2. Vrei sa recrutezi un membru nou" << std::endl;
   if (jucator->getTrupa()->areMembriFosti()) {
-    std::cout << "3. Vrei sa readuci un membru fost" << std::endl;
+    std::cout << "3. Vrei sa readuci un fost membru" << std::endl;
   }
   std::cout << "Raspunsul tau: ";
   int rasp = citesteInt(1, jucator->getTrupa()->areMembriFosti() ? 3 : 2);
@@ -388,19 +404,15 @@ void Gameplay::modificaTrupa() {
     std::cout << "Numarul membrului pe care vrei sa il elimini: ";
     int opt = verifInput.getIntInput(1,static_cast<int>(top.size()));
     jucator->getTrupa()->eliminaMembru(opt-1);
-    std::cout << "Scrie \"c\" pentru a continua: ";
-    validareString({"c"});
   }
   else if (rasp == 2) {
     afiseazaPersoaneSpecifice<Muzician>();
     std::cout << "Alege din aceasta lista pe cine doresti sa adaugi: ";
     auto m = selecteazaPersoanaDupaId<Muzician>();
     jucator->getTrupa()->adaugaMembru(m);
-    std::cout << "Scrie \"c\" pentru a continua: ";
-    validareString({"c"});
   }
   else if (rasp == 3 && jucator->getTrupa()->areMembriFosti()) {
-    std::cout << "Membrii fosti disponibili: " << std::endl;
+    std::cout << "Fostii membri disponibili: " << std::endl;
     auto membriFosti = jucator->getTrupa()->getMembriFosti();
     for (size_t i = 0; i < membriFosti.size(); i++) {
       std::cout << i+1 << ". " << *membriFosti[i] << std::endl;
@@ -409,9 +421,9 @@ void Gameplay::modificaTrupa() {
     int opt = citesteInt(1, static_cast<int>(membriFosti.size()));
     jucator->getTrupa()->restaurareMembruFost(opt-1);
     std::cout << "Membrul a fost readus in trupa cu succes!" << std::endl;
-    std::cout << "Scrie \"c\" pentru a continua: ";
-    validareString({"c"});
   }
+  std::cout << "Scrie \"c\" pentru a continua: ";
+  validareString({"c"});
 }
 void Gameplay::afiseazaStatusTrupa() const {
   std::cout << *jucator->getTrupa() << std::endl;
@@ -500,12 +512,12 @@ void Gameplay::turneu() {
       int nrLocatii = 0;
       while (true) {
         std::cout << "Vrei sa setezi o locatie? " << std::endl;
-        std::cout << "(1) pentru da, (0) pentru nu: ";
-        int optiune = citesteInt(0,1);
-        if (optiune == 1){
+        std::cout << "\"da\"/\"nu\": ";
+        std::string optiune = validareString({"da", "nu"});
+        if (optiune == "da"){
           scadeBuget(turneu->costRunda());
           afiseazaLocatiiDisponibile(turneu);
-          turneu->adaugaLocatie(selecteazaLocatieDupaId(turneu));
+          turneu->adaugaLocatie(selecteazaLocatie(turneu));
           nrLocatii++;
         }
         else {
@@ -565,17 +577,17 @@ void Gameplay::raportFinal() const {
     std::cout << "Ai parasit jocul." << std::endl;
   }
   else {
-    std::cout << "===== RAPORT FINAL =====" << std::endl;
+    std::cout << "\n===== RAPORT FINAL =====" << std::endl;
     std::cout << "\n\n Totalul albumelor inregistrate de trupa: "<< Album::getNrAlbume() <<std::endl;
     std::cout << " Totalul concertelor organizate: " << Concert::getNrConcerte() << std::endl;
     std::cout << " Totalul turneelor organizate: " << Turneu::getNrTurnee() <<std::endl;
   }
 }
-int Gameplay::citesteInt(int minim, int maxim) {
+int Gameplay::citesteInt(int minim, int maxim) const {
   int nr;
   while (true) {
     try {
-      nr = Validation::validatingInt(minim,maxim);
+      nr = verifInput.getIntInput(minim,maxim);
       return nr;
     } catch (std::exception& e) {
       std::cerr << e.what() << std::endl;
@@ -583,11 +595,11 @@ int Gameplay::citesteInt(int minim, int maxim) {
   }
 }
 
-std::string Gameplay::validareString(const std::vector<std::string>& inputOptions) {
+std::string Gameplay::validareString(const std::vector<std::string>& inputOptions) const {
   std::string input;
   while (true) {
     try {
-      input = Validation::validatingString(inputOptions);
+      input = verifInput.getStringInput(inputOptions);
       return input;
     } catch (std::exception& e) {
       std::cerr << e.what() << std::endl;

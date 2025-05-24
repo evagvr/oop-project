@@ -25,7 +25,7 @@ public:
     void afiseazaModalitatiTransport() const;
     template<typename T>
     std::shared_ptr<T> selecteazaModalitatiTransport() const;
-    std::shared_ptr<Oras> selecteazaLocatieDupaId(const std::shared_ptr<Turneu>& turneu);
+    std::shared_ptr<Oras> selecteazaLocatie(const std::shared_ptr<Turneu>& turneu);
     void afiseazaLocatiiDisponibile(const std::shared_ptr<Turneu>& turneu) const;
 
     template<typename T>
@@ -51,8 +51,8 @@ public:
     bool reset();
     void raportFinal() const;
     bool aparDubluri(const std::shared_ptr<Muzician>& m);
-    static int citesteInt(int min, int max);
-    static std::string validareString(const std::vector<std::string>& inputOptions);
+    int citesteInt(int min, int max) const;
+    std::string validareString(const std::vector<std::string>& inputOptions) const;
 };
 
 #endif

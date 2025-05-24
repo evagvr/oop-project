@@ -18,8 +18,7 @@ public:
   int calculeazaCost() const override;
   int contributie() override;
   void contributieConcert();
-  void cresteSuccesAnual();
-  void cresteExperienta();
+  void cresteriAnuale();
   void afiseaza() const override;
   int influenteazaJoc() const;
 

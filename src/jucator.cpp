@@ -57,7 +57,7 @@ void Jucator::afiseazaStatistici() const {
 
 
 void Jucator::reset() {
-  buget = 1000;
+  buget = 5000;
   popularitate = 0;
   an = 0;
   trupa = nullptr;

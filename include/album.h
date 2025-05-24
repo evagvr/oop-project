@@ -25,9 +25,9 @@ public:
     Album(const Album& other);
     Album& operator=(const Album& other);
     ~Album();
-    int stabilesteCresterePopularitate() const;
-    int stabilesteProfit(int buget) const;
-    void calculeazaCalitateAlbum(int medieSkillLevel);
+    int stabilesteCresterePopularitate(int contributieManager) const;
+    int stabilesteProfit(int buget, int contributieManager) const;
+    void calculeazaCalitateAlbum(int medieSkillLevel, int contributieProducator);
     static int getNrAlbume();
     friend std::ostream& operator<<(std::ostream& out, const Album& a);
 };

@@ -3,17 +3,18 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <list>
 #include "../include/bodyguard.h"
 #include "../include/tehnicianSunet.h"
 #include "../include/avion.h"
 #include "../include/autocar.h"
-#include <list>
+
 int Turneu::nrTurnee = 0;
 const int Turneu::COST_MINIM = 10900;
 
 Turneu::Turneu(): Activitate(){
   durata = 0;
-  this->bileteVandute = 0;
+  bileteVandute = 0;
   orase.clear();
   echipaTurneu.clear();
   track.clear();
@@ -65,9 +66,10 @@ void Turneu::angajeazaPersonal(const std::shared_ptr<Persoana>& p) {
     std::cout << "Angajatul a fost adaugat cu succes" <<std::endl;
   }
 }
-float Turneu::calculeazaNrSpectatori(int nrRunda, int& nrSpectatori) const {
+float Turneu::calculeazaNrSpectatori(int nrRunda, int& nrSpectatori) {
   auto estimare = orase[nrRunda]->aflaPopularitate() * static_cast<float>(orase[nrRunda]->aflaLocuriDisponibile());
   nrSpectatori = static_cast<int>(estimare);
+  this->bileteVandute += nrSpectatori;
   return static_cast<float>(nrSpectatori)/static_cast<float>(orase[nrRunda]->aflaLocuriDisponibile());
 }
 

@@ -32,17 +32,15 @@ ProducatorMuzical::~ProducatorMuzical() = default;
 
 
 int ProducatorMuzical::contributie() {
-  return int((experienta + succese)/2);
+  return (experienta + succese)/2;
 }
 
-void ProducatorMuzical::cresteExperienta() {
+void ProducatorMuzical::cresteriAnuale() {
   experienta++;
-}
-void ProducatorMuzical::cresteSuccesAnual() {
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<> distrib(0, 6);
-  succese += distrib(gen);
+  succese += experienta/2;
+  if (succese + experienta > 15) {
+    cost = succese*experienta;
+  }
 }
 int ProducatorMuzical::calculeazaCost() const {
   return cost;
@@ -53,7 +51,7 @@ void ProducatorMuzical::contributieConcert() {
   std::cout << "Melodiile producatorului au fost apreciate de fani" << std::endl;
 }
 int ProducatorMuzical::influenteazaJoc() const {
-  if (succese + experienta > 10) {
+  if (succese + experienta > 15) {
     return 400;
   }
   else {

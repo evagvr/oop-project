@@ -1,5 +1,7 @@
 
 #include "../include/MelodieColaborativa.h"
+
+#include "../include/inputHandler.h"
 #include "../include/melodie.h"
 
 MelodieColaborativa::MelodieColaborativa(int skillLevelMuzician): Melodie() {
@@ -21,10 +23,25 @@ std::shared_ptr<Muzician> MelodieColaborativa::getArtist() const {
 
 
 std::istream& operator>>(std::istream& in, MelodieColaborativa& melodie) {
+  InputHandler verifInput;
   std::cout << "Titlu: ";
   in >> melodie.titlu;
-  std::cout << "\nGenMuzical: ";
-  in >> melodie.genMuzical;
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  std::cout << "Gen Muzical: 1) Pop 2) Rock 3) Electronic 4) Clasic" <<std::endl;
+  std::cout << "Optiunea ta: ";
+  int opt = verifInput.getIntInput(1,4);
+  if (opt == 1) {
+    melodie.genMuzical = "Pop";
+  }
+  else if (opt == 2) {
+    melodie.genMuzical = "Rock";
+  }
+  else if (opt == 3) {
+    melodie.genMuzical = "Electronic";
+  }
+  else if (opt == 4) {
+    melodie.genMuzical = "Clasic";
+  }
   std::cout << "\nArtistul cu care doresti sa faci colaborarea: ";
   in >> *melodie.artistColaborator;
   return in;

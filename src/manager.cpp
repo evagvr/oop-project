@@ -24,7 +24,7 @@ Manager& Manager:: operator=(const Manager& other){
 }
 Manager::~Manager() = default;
 
-void Manager::contributieTurneu() const {
+void Manager::contributieTurneu(){
   if (conexiuni > 80 && experienta > 10) {
     std::cout << nume << " " << prenume << ", managerul trupei, a ajutat enorm la promovarea turneului" << std::endl;
   }
@@ -34,19 +34,26 @@ void Manager::contributieTurneu() const {
   else {
     std::cout << nume << " " << prenume << ", managerul trupei, nu a ajutat prea tare cu promovarea turneului" << std::endl;
   }
+  experienta++;
 }
 
-void Manager::cresteExperienta() {
+void Manager::cresteriAnuale() {
   experienta++;
+  conexiuni+= static_cast<int>(experienta*0.3);
+  if (experienta*conexiuni > cost) {
+    cost = experienta * conexiuni;
+  }
 }
 int Manager::calculeazaCost() const {
   return cost;
 }
 
 int Manager::contributie() {
-  return int((experienta+conexiuni)/3);
+  experienta++;
+  return (experienta+conexiuni)/3;
 }
-void Manager::contributieConcert() const {
+void Manager::contributieConcert(){
+  experienta++;
   std::cout << "Managerul s-a ocupat de promovarea concertului cu succes" << std::endl;
 }
 

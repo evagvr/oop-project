@@ -33,7 +33,7 @@ Album& Album::operator=(const Album& other) {
 
 Album::~Album() = default;
 
-void Album::calculeazaCalitateAlbum(int medieSkillLevel) {
+void Album::calculeazaCalitateAlbum(int medieSkillLevel, int contributieProducator) {
     int contribuireSkilllevelColab = 0;
     int nrColaborari = 0;
     for (const auto& melodie : melodii) {
@@ -48,19 +48,27 @@ void Album::calculeazaCalitateAlbum(int medieSkillLevel) {
     }
     else
         calitateAlbum = medieSkillLevel;
+    calitateAlbum = static_cast<int>(calitateAlbum + (contributieProducator * 0.1));
+
+    if (calitateAlbum > 10)
+        calitateAlbum = 10;
 }
-int Album::stabilesteCresterePopularitate() const {
+int Album::stabilesteCresterePopularitate(int contributieManager) const {
+    int baza;
     if (calitateAlbum > 7)
-        return 8;
+        baza = 8;
     else if (calitateAlbum > 4)
-        return 6;
+        baza = 6;
     else
-        return 4;
+        baza = 4;
+    int bonus = contributieManager / 5;
+    return baza + bonus;
 }
 
-int Album::stabilesteProfit(int buget) const {
-    int castig = (CASTIG_MINIM_PER_MELODIE*nrMelodii + calitateAlbum*static_cast<int>(buget/RATA_INFLUENTA_BUGET)) * dataLansare;
-    return castig;
+int Album::stabilesteProfit(int buget,int contributieManager) const {
+    int castig = (CASTIG_MINIM_PER_MELODIE*nrMelodii + calitateAlbum*(buget/RATA_INFLUENTA_BUGET)) * dataLansare;
+
+    return static_cast<int>(castig + contributieManager*0.1);
 }
 int Album::getNrAlbume() {
     return nrAlbume;

@@ -15,11 +15,11 @@ public:
   Manager& operator=(const Manager& other);
   ~Manager() override;
 
-  void contributieTurneu() const;
+  void contributieTurneu();
   int calculeazaCost() const override;
-  void contributieConcert() const;
+  void contributieConcert();
   int contributie() override;
-  void cresteExperienta();
+  void cresteriAnuale();
   void organizeazaEveniment();
   void interactioneazaCuTrupa();
   void gestioneazaCriza();

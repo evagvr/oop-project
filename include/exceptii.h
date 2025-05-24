@@ -30,10 +30,10 @@ class ExceptionVictory : public std::runtime_error {
 public:
     explicit ExceptionVictory(const std::string& message) : std::runtime_error(message) {}
 };
-class ExceptionInvalidInput : public std::exception {
+class ExceptieInputInvalid : public std::exception {
     std::string msg;
 public:
-    explicit ExceptionInvalidInput(const std::string& message) : msg(message) {}
+    explicit ExceptieInputInvalid(const std::string& message) : msg(message) {}
     const char* what () const noexcept override {
         return msg.c_str();
     }
@@ -44,4 +44,4 @@ public:
 
 
 
-#endif //EXCEPTII_H
+#endif

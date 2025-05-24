@@ -2,6 +2,7 @@
 #include <memory>
 #include <algorithm>
 #include <random>
+#include "limits"
 #include "../include/bazaDateJoc.h"
 #include "../include/trupa.h"
 #include "../include/album.h"
@@ -110,9 +111,7 @@ bool Trupa::verificaTrupa() {
     }),
     membri.end()
     );
-  std::cout << "Au fost eliminati membrii cu skillLevel 0" << std::endl;
   if (membri.empty()) {
-    std::cout << "Trupa este goala" << std::endl;
     return false;
   }
   return true;
@@ -139,6 +138,7 @@ void Trupa::restaurareMembruFost(int index) {
 }
 
 std::istream& operator>>(std::istream& in, Trupa& t){
+  InputHandler verifInput;
   auto persoane = BazaDateJoc<Persoana>::getInstance()->getItems();
   std::vector<std::shared_ptr<Manager>> manageriDisponibili;
   std::vector<std::shared_ptr<ProducatorMuzical>> producatoriDisponibili;
@@ -156,6 +156,7 @@ std::istream& operator>>(std::istream& in, Trupa& t){
   }
   std::cout << "Nume trupa: ";
   in >> t.nume;
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   std::cout << "Pentru inceput vom infiinta trupa" << std:: endl;
   std::cout << "Alege un manager: " << std:: endl;
   for (size_t i = 0; i < manageriDisponibili.size(); i++) {
@@ -164,14 +165,14 @@ std::istream& operator>>(std::istream& in, Trupa& t){
 
   std::cout << "Optiunea ta: ";
   int optiune;
-  optiune = Gameplay::citesteInt(1, static_cast<int>(manageriDisponibili.size()));
+  optiune = verifInput.getIntInput(1, static_cast<int>(manageriDisponibili.size()));
   t.manager = manageriDisponibili[optiune-1];
   std::cout << "Alege un producator: " << std:: endl;
   for (size_t i = 0; i < producatoriDisponibili.size(); i++) {
     std::cout << i+1 << ") "<< *producatoriDisponibili[i];
   }
   std::cout << "Optiunea ta: ";
-  optiune = Gameplay::citesteInt(1, static_cast<int>(producatoriDisponibili.size()));
+  optiune = verifInput.getIntInput(1, static_cast<int>(producatoriDisponibili.size()));
   t.producator = producatoriDisponibili[optiune-1];
   std::vector<std::shared_ptr<Muzician>> membriiAlesi;
   std::cout << "Acum vei avea de ales 3 membrii ai trupei" << std::endl;
@@ -185,7 +186,7 @@ std::istream& operator>>(std::istream& in, Trupa& t){
     bool valid = false;
     while (!valid) {
       try{
-        optiune = Gameplay::citesteInt(1, static_cast<int>(muzicieniDisponibili.size()));
+        optiune = verifInput.getIntInput(1, static_cast<int>(muzicieniDisponibili.size()));
       auto selectat = muzicieniDisponibili[optiune - 1];
 
       auto exista = std::find_if(
@@ -211,8 +212,9 @@ std::istream& operator>>(std::istream& in, Trupa& t){
 }
 std::ostream& operator<<(std::ostream& out, const Trupa& t){
   out<<"Nume trupa: "<<t.nume<<"\nManager: "<<*t.manager<<"\nProducator: "<<*t.producator;
+  out << "Membrii: ";
   for (size_t i = 0; i < t.membri.size(); i++) {
-    std::cout << i+1 << ") "<< *t.membri[i] << std::endl;
+    out << i+1 << ") "<< *t.membri[i] << std::endl;
   }
 
   return out;

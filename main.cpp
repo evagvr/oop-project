@@ -47,6 +47,7 @@ int main() {
         }
         else if (opt == "r") {
             if (g->reset()) {
+                g = std::make_shared<Gameplay>();
                 g->start();
                 g->setup();
                 g->incrementeazaAn();

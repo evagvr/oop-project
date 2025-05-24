@@ -43,7 +43,7 @@ int Concert::calculeazaCosturi(){
 }
 void Concert::desfasoaraActivitate() {
   std::cout << "---RAPORT ACTIVITATE---"<<std::endl;
-  float raportPrezenta = calculeazaNrSpectatori();
+  float raportPrezenta = this->calculeazaNrSpectatori();
   std::cout << "S-au prezentat " << numarSpectatori << " de spectatori la concert"<<std::endl;
   int contributieTehnician = 0;
   int contributieBodyguard = 0;
@@ -56,7 +56,7 @@ void Concert::desfasoaraActivitate() {
       contributieBodyguard = p->contributie();
     }
   }
-  calculeazaSucces(raportPrezenta, contributieTehnician, contributieBodyguard);
+  this->calculeazaSucces(raportPrezenta, contributieTehnician, contributieBodyguard);
 }
 void Concert::calculeazaSucces(float raportPrezenta, int contributieTehnician, int contributieBodyguard) {
   float t = static_cast<float>(contributieTehnician)/100.0f;
