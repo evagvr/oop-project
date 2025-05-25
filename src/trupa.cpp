@@ -193,7 +193,6 @@ std::istream& operator>>(std::istream& in, Trupa& t){
     std::cout << "Alege Membrul nr." << i << ": ";
     bool valid = false;
     while (!valid) {
-      try{
         optiune = verifInput.getIntInput(1, static_cast<int>(muzicieniDisponibili.size()));
       auto selectat = muzicieniDisponibili[optiune - 1];
 
@@ -205,14 +204,11 @@ std::istream& operator>>(std::istream& in, Trupa& t){
       );
 
       if (exista != t.membri.end()) {
-        throw ExceptieMembruDuplicat();
-      }
-      t.membri.push_back(selectat);
-      valid = true;
-      } catch (const ExceptieMembruDuplicat& ) {
         std::cout << "Membru deja in trupa. Reincearca: ";
-      } catch(const std::exception& ){
-        std::cout << "Eroare la citirea optiunii. Reincearca: ";
+      }
+      else {
+        t.membri.push_back(selectat);
+        valid = true;
       }
     }
   }

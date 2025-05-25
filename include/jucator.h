@@ -19,7 +19,6 @@ class Jucator {
     Jucator& operator=(Jucator& j) = delete;
     static std::shared_ptr<Jucator> getInstance();
 
-  void verificaStatus() const;
   int getBuget() const;
   void schimbaBuget(int b);
   int getPopularitate() const;

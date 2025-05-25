@@ -1,6 +1,5 @@
 
 #include "../include/jucator.h"
-#include "../include/exceptii.h"
 
 std::shared_ptr<Jucator> Jucator::instance = nullptr;
 Jucator::Jucator(): an(0), buget(5000), popularitate(0), trupa(nullptr) {}
@@ -31,20 +30,7 @@ void Jucator::construiesteTrupa() {
   trupa = std::make_shared<Trupa>();
   std::cin >> *trupa;
 }
-void Jucator::verificaStatus() const {
-  if (an > 20){
-    throw ExceptionGameOver("Ai parcurs cei 20 de ani disponibili pentru a-ti face trupa cunoscuta, din pacate ai pierdut jocul!");
-  }
-  if (popularitate < 0){
-    throw ExceptionGameOver("Popularitatea a luat valori negative, ai pierdut jocul!");
-  }
-  if (popularitate >= 100){
-    throw ExceptionVictory("Felicitari! Ai dus trupa la popularitate internationala, astfel ai castigat jocul!");
-  }
-  if (buget < 0){
-    throw ExceptionGameOver("Bugetul a scazut sub 0, ai pierdut jocul!");
-  }
-}
+
 
 
 void Jucator::afiseazaStatistici() const {

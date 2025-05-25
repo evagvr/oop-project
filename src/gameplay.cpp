@@ -282,23 +282,19 @@ void Gameplay::meniu() const{
   std::cout << "Optiunea ta: ";
 }
 bool Gameplay::terminareJoc() const{
-  try {
-    jucator->verificaStatus();
     if (!jucator->getTrupa()->verificaTrupa()) {
       std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;
       return true;
     }
-    std::cout << "A fost facuta verificarea" << std::endl;
+    if (jucator->getPopularitate() >= 100) {
+      std::cout << "===== Ai castigat! :)))) =====" << std::endl;
+      return true;
+    }
+    if (jucator->getBuget() <= 0 || jucator->getPopularitate() < 0 || jucator->getAnCurent() >= 20) {
+      std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;
+      return true;
+    }
     return false;
-  }catch (const ExceptionVictory& e) {
-    std::cout << "===== Ai castigat! :)))) =====" << std::endl;
-    std::cout << e.what() << std::endl;
-    return true;
-  } catch (const ExceptionGameOver& e) {
-    std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;
-    std::cout << e.what() << std::endl;
-    return true;
-  }
 }
 
 void Gameplay::repetitii(){
