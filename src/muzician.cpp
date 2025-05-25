@@ -58,16 +58,14 @@ void Muzician::contributieTurneu() const{
   }
 }
 void Muzician::repetitii(){
-  try {
-    skillLevel++;
-    if (skillLevel >= 10) {
-      skillLevel = 10;
-      throw ExceptieSkillLevel();
-    }
-  } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
+  skillLevel++;
+  if (skillLevel >= 10) {
+    skillLevel = 10;
+    std::cout << "SkillLevel-ul pentru " << numeScena << " a ajuns deja la nivelul maxim" <<std::endl;
   }
-  std::cout << this->numeScena << " si-a crescut skillLevel-ul la "<< skillLevel <<std::endl;
+  else {
+    std::cout << this->numeScena << " si-a crescut skillLevel-ul la "<< skillLevel <<std::endl;
+  }
 }
 void Muzician::status() const{
   std::cout << "Muzician: " << this->numeScena << std::endl;
