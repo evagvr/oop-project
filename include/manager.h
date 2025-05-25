@@ -23,7 +23,7 @@ public:
   void afiseaza() const override;
   int influenteazaJoc() const;
 
-  friend std::istream& operator>>(std::istream& in, Manager& m);
+
   friend std::ostream& operator<<(std::ostream& out, const Manager& m);
 };
 #endif

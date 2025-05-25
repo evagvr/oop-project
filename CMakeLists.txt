@@ -147,7 +147,7 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
                 include/gameplay.h
         include/inputHandler.h
                 include/jucator.h
-                include/manager2.h
+        include/manager.h
                 include/melodie.h
                 include/MelodieColaborativa.h
                 include/MelodieSimpla.h

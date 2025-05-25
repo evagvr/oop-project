@@ -8,7 +8,7 @@
 #include "../include/tehnicianSunet.h"
 #include "../include/avion.h"
 #include "../include/autocar.h"
-#include <limits>
+
 int Turneu::nrTurnee = 0;
 const int Turneu::COST_MINIM = 10900;
 
@@ -35,10 +35,12 @@ const std::vector<std::shared_ptr<Transport>> Turneu::modalitatiTransport = {
   std::make_shared<Autocar>(750, 6)
 };
 void Turneu::afiseazaModalitatiTransport(){
+  int i = 1;
   for (const auto& mod: modalitatiTransport) {
     if (auto m = std::dynamic_pointer_cast<Transport>(mod)) {
-      std::cout << *m;
+      std::cout << i<< ")"<< *m;
     }
+    i++;
   }
 }
 std::shared_ptr<Transport> Turneu::selecteazaModalitatiTransport(){
@@ -74,7 +76,7 @@ float Turneu::calculeazaNrSpectatori(int nrRunda, int& nrSpectatori) {
 }
 
 void Turneu::selecteazaTransport() {
-  std::cout << "Selecteaza modalitatea de transport" <<std::endl;
+  std::cout << "Selecteaza modalitatea de transport: " <<std::endl;
   afiseazaModalitatiTransport();
   modalitateTransport = selecteazaModalitatiTransport();
 }

@@ -7,7 +7,7 @@
 #include "concert.h"
 #include "persoana.h"
 #include "muzician.h"
-#include "manager2.h"
+#include "manager.h"
 #include "producator.h"
 #include "melodie.h"
 

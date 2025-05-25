@@ -1,4 +1,3 @@
-
 #include <string>
 #include "../include/gameplay.h"
 #include "../include/inputHandler.h"

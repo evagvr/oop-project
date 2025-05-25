@@ -57,14 +57,14 @@ void Muzician::repetitii(){
   skillLevel++;
   if (skillLevel >= 10) {
     skillLevel = 10;
-    std::cout << "SkillLevel-ul pentru " << numeScena << " a ajuns deja la nivelul maxim" <<std::endl;
+    std::cout << "\nSkillLevel-ul pentru " << numeScena << " a ajuns deja la nivelul maxim" <<std::endl;
   }
   else {
-    std::cout << this->numeScena << " si-a crescut skillLevel-ul la "<< skillLevel <<std::endl;
+    std::cout <<"\n"<< this->numeScena << " si-a crescut skillLevel-ul la "<< skillLevel <<std::endl;
   }
 }
 void Muzician::status() const{
-  std::cout << "Muzician: " << this->numeScena << std::endl;
+  std::cout << "\nMuzician: " << this->numeScena << std::endl;
   std::cout << "Tip: " << this->tipInstrument << std::endl;
   std::cout << "SkillLevel: " << this->skillLevel << std::endl;
 }
@@ -76,9 +76,9 @@ int Muzician::contributie() {
 }
 void Muzician::contributieConcert() const {
   if (cooperativitate < ego)
-    std::cout << numeScena << " a cantat, dar s-a certat mult cu trupa" <<std::endl;
+    std::cout <<"\n"<< numeScena << " a cantat, dar s-a certat mult cu trupa" <<std::endl;
   else {
-    std::cout << numeScena << " a cantat, si a pastrat o atmosfera placuta in trupa" << std::endl;
+    std::cout <<"\n"<< numeScena << " a cantat, si a pastrat o atmosfera placuta in trupa" << std::endl;
   }
 }
 int Muzician::calculeazaCost() const {
@@ -86,10 +86,10 @@ int Muzician::calculeazaCost() const {
 }
 
 void Muzician::afiseazaNume() const {
-  std::cout << nume;
+  std::cout << numeScena;
 }
 void Muzician::afiseaza() const {
-  std::cout << "Nume: " << nume << " " << prenume << ", varsta " << varsta
+  std::cout << "\nNume: " << nume << " " << prenume << ", varsta " << varsta
             << " ani (skill: " << skillLevel <<", cooperativitate: "
             << cooperativitate << ", ego: " << ego << ")" << std::endl;
 }

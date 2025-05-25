@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/manager2.h"
+#include "../include/manager.h"
 
 
 Manager::Manager(): Persoana(){
@@ -68,21 +68,6 @@ int Manager::influenteazaJoc() const {
     return 0;
 }
 
-
-std::istream& operator>>(std::istream& in, Manager& m){
-  std::cout<<"Nume: ";
-  in>>m.nume;
-  std::cout << " ";
-  in>>m.prenume;
-  std::cout<<" (Varsta: ";
-  in>>m.varsta;
-  std::cout<<", Experienta: ";
-  in>>m.experienta;
-  std::cout<<", Conexiuni: ";
-  in>>m.conexiuni;
-  std::cout<< ")"<<std::endl;
-  return in;
-}
 std::ostream& operator<<(std::ostream& out, const Manager& m){
   out << "Nume: " << m.nume<<", Prenume: "<<m.prenume<<" (Varsta: "<<m.varsta
       << ", Cost: "<< m.cost <<", Experienta: "<< m.experienta<<", Conexiuni: "<<m.conexiuni << ")\n";

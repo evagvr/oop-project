@@ -2,9 +2,6 @@
 #include "../include/trupa.h"
 #include "../include/tehnicianSunet.h"
 #include "../include/bodyguard.h"
-#include <iostream>
-#include <random>
-#include <typeinfo>
 #include "../include/concert.h"
 #include "../include/turneu.h"
 #include "../include/MelodieSimpla.h"
@@ -16,6 +13,9 @@
 #include "../include/bazaDateJoc.h"
 #include <list>
 #include <algorithm>
+#include <iostream>
+#include <random>
+#include <typeinfo>
 
 Gameplay::Gameplay(): contorRepetitii(0), bazaDateLocatii ( BuilderBazaDateJoc<Oras>()
   .adaugaItem(std::make_shared<Oras>("Bucuresti", 0.5, 300, 4000, 0))

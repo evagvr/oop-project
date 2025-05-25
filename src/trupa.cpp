@@ -162,7 +162,7 @@ std::istream& operator>>(std::istream& in, Trupa& t){
       muzicieniDisponibili.push_back(muz);
     }
   }
-  std::cout << "Nume trupa: ";
+  std::cout << "\nNume trupa: ";
   std::getline(std::cin, t.nume);
   std::cout << "Pentru inceput vom infiinta trupa" << std:: endl;
   std::cout << "Alege un manager: " << std:: endl;
@@ -184,12 +184,13 @@ std::istream& operator>>(std::istream& in, Trupa& t){
   std::vector<std::shared_ptr<Muzician>> membriiAlesi;
   std::cout << "Acum vei avea de ales 3 membrii ai trupei" << std::endl;
   std::cout << "Scrie \"c\" pentru a contiuna:";
-  verifInput.getStringInput({"c"});
+  verifInput.verificaStringInput({"c"});
+  std::cout<<std::endl;
   for (size_t i = 0; i < muzicieniDisponibili.size(); i++) {
     std::cout << i+1 << ") "<< *muzicieniDisponibili[i];
   }
   for (int i = 1; i < 4; i++) {
-    std::cout << "Alege Membrul nr." << i << ": ";
+    std::cout << "\nAlege Membrul nr." << i << ": ";
     bool valid = false;
     while (!valid) {
         optiune = verifInput.getIntInput(1, static_cast<int>(muzicieniDisponibili.size()));
