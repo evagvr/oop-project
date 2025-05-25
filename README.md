@@ -1,5 +1,12 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
-
+# MusicLife
+## Descriere:
+##### MusicLife este un joc in care preiei controlul asupra alegerilor si activitatilor pe care o trupa le face, iar misiunea ta este sa o faci cunoscuta.
+## Gameplay:
+##### Incepi prin a-ti forma trupa: iti alegi strategic membrii si personalul trupei(managerul si producatorul muzical), apoi in fiecare an iti dezvolti trupa prin activitati: repetitii, inregistrare de album, modificarea structurii trupei, concerte, turnee.
+## Finalul Jocului
+##### _**Castigi**_ daca cresti popularitatea la 100
+#### SAU
+##### _**Pierzi**_ daca ramai fara bani, iti parasesc toti membrii trupa sau depasesti cei 20 de ani pe care ii ai la dispozitie pentru a castiga
 ### Folosiți template-ul corespunzător grupei voastre!
 
 | Laborant  | Link template                                |
