@@ -73,6 +73,10 @@ int Concert::crestePopularitatea(int popularitate) const{
 int Concert::getNrConcerte() {
   return nrConcerte;
 }
+void Concert::resetContor() {
+  nrConcerte = 0;
+}
+
 
 std::ostream& operator<<(std::ostream& out, const Concert& c) {
   std::cout << "Concertul a avut loc in ";

@@ -15,8 +15,10 @@ public:
 
   int contributieColaborator() const;
   std::shared_ptr<Muzician> getArtist() const;
+  void afiseaza(std::ostream& out) const override;
+  bool equals(const Melodie& other) const override;
   friend std::istream& operator>>(std::istream& in, MelodieColaborativa& melodie);
-  friend std::ostream& operator<<(std::ostream& out, const MelodieColaborativa& melodie);
+
 };
 
 

@@ -15,7 +15,7 @@
 #include "../include/oras.h"
 #include "../include/bazaDateJoc.h"
 #include <list>
-#include "../include/validation.h"
+#include <algorithm>
 
 int Gameplay::costMinimLocatie(const std::shared_ptr<Turneu>& turneu) {
   auto orase = bazaDateLocatii->getItems();
@@ -249,7 +249,7 @@ void Gameplay::incrementeazaAn(){
         if (mem->obtineSkilllevel() == 0) {
           std::cout << "Ai grija! ";
           mem->afiseazaNume();
-          std::cout <<" are skillLevel-ul 0 in acest moment, daca nu ii cresti skillLevel-ul va fi nevoit sa paraseasca trupa!" << std::endl;
+          std::cout <<" are skillLevel-ul 1 in acest moment, daca nu ii cresti skillLevel-ul va fi nevoit sa paraseasca trupa in urmatorul an!" << std::endl;
         }
       }
     }
@@ -342,12 +342,30 @@ void Gameplay::inregistreazaAlbum() {
       if (optiune == 1) {
         std::shared_ptr<MelodieSimpla> mS= std::make_shared<MelodieSimpla>();
         std::cin >> *mS;
-        melodii.push_back(mS);
+        auto it = std::find_if(melodii.begin(), melodii.end(), [&mS](const std::shared_ptr<Melodie>& ptr) {
+        return *ptr == *mS;
+        });
+
+        if (it != melodii.end()) {
+          std::cout << "Melodia aceasta deja exista! Mai incercam odata" << std::endl;
+          i--;
+        } else {
+          melodii.push_back(mS);
+        }
       }
       else if (optiune == 2) {
         std::shared_ptr<MelodieColaborativa> mC = std::make_shared<MelodieColaborativa>(jucator->getTrupa()->calculeazaSkillLevelTrupa());
         std::cin >> *mC;
-        melodii.push_back(mC);
+        auto it = std::find_if(melodii.begin(), melodii.end(), [&mC](const std::shared_ptr<Melodie>& ptr) {
+        return *ptr == *mC;
+        });
+
+        if (it != melodii.end()) {
+          std::cout << "Melodia aceasta deja exista! Mai incercam odata" << std::endl;
+          i--;
+        } else {
+          melodii.push_back(mC);
+        }
 
         auto artistNou = mC->getArtist();
         BazaDateJoc<Persoana>::getInstance()->adaugaItem(artistNou);
@@ -357,10 +375,14 @@ void Gameplay::inregistreazaAlbum() {
     std::cout << "Ai creat melodiile, acum sa finalizam ultimele detalii pentru album" <<std::endl;
     std::cout << "Denumirea albumului: ";
     std::string titlu;
-    std::cin >> titlu;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::getline(std::cin, titlu);
     std::shared_ptr<Album> a = std::make_shared<Album>(titlu, jucator->getAnCurent(), nrMelodii, melodii);
     jucator->getTrupa()->inregistreazaAlbum(a);
+    while (jucator->getTrupa()->verificaAlbum()) {
+      std::cout << "Ai deja un album cu acest nume! Mai incearca: ";
+      std::getline(std::cin, titlu);
+      a->schimbaTitlu(titlu);
+    }
     int contributieManager = 0;
     int contributieProducator = 0;
     for (const auto& pers: jucator->getTrupa()->echipa()) {
@@ -566,6 +588,9 @@ bool Gameplay::reset() {
   std::string opt = validareString({"da", "nu"});
   if (opt == "da") {
     jucator->reset();
+    Album::resetContor();
+    Concert::resetContor();
+    Turneu::resetContor();
     return true;
   }
   return false;
@@ -583,6 +608,20 @@ void Gameplay::raportFinal() const {
     std::cout << " Totalul turneelor organizate: " << Turneu::getNrTurnee() <<std::endl;
   }
 }
+bool Gameplay::retry() {
+  std::cout << "Vrei sa mai incerci odata jocul?" << std::endl;
+  std::cout << "Optiunea ta (\"da\"/\"nu\"): ";
+  std::string opt = verifInput.getStringInput({"da", "nu"});
+  if (opt == "da") {
+    jucator->reset();
+    Album::resetContor();
+    Concert::resetContor();
+    Turneu::resetContor();
+    return true;
+  }
+  return false;
+}
+
 int Gameplay::citesteInt(int minim, int maxim) const {
   int nr;
   while (true) {

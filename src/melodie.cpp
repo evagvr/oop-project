@@ -11,3 +11,8 @@ Melodie::Melodie(const std::string& titlu, const std::string& genMuzical){
   this->genMuzical = genMuzical;
 }
 Melodie::~Melodie() = default;
+
+std::ostream& operator<<(std::ostream &out, const Melodie &m) {
+  m.afiseaza(out);
+  return out;
+}

@@ -8,7 +8,7 @@
 #include "../include/tehnicianSunet.h"
 #include "../include/avion.h"
 #include "../include/autocar.h"
-
+#include <limits>
 int Turneu::nrTurnee = 0;
 const int Turneu::COST_MINIM = 10900;
 
@@ -29,10 +29,10 @@ Turneu::Turneu(int succes, int durata, const std::vector<std::shared_ptr<Oras>>&
 }
 Turneu::~Turneu() = default;
 const std::vector<std::shared_ptr<Transport>> Turneu::modalitatiTransport = {
-  std::make_shared<Avion>(10000, 10),
-  std::make_shared<Avion>(9000, 8),
-  std::make_shared<Autocar>(7000, 5),
-  std::make_shared<Autocar>(7500, 6)
+  std::make_shared<Avion>(1000, 10),
+  std::make_shared<Avion>(900, 8),
+  std::make_shared<Autocar>(700, 5),
+  std::make_shared<Autocar>(750, 6)
 };
 void Turneu::afiseazaModalitatiTransport(){
   for (const auto& mod: modalitatiTransport) {
@@ -145,8 +145,13 @@ void Turneu::calculeazaSuccesRunda(int nrRunda, float raportPrezenta, int contri
 std::istream& operator>>(std::istream& in, Turneu& turneu){
   std::cout << "Cate locatii vrei sa contina turneul" << std::endl;
   in >> turneu.durata;
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   return in;
 }
 int Turneu::getNrTurnee() {
   return nrTurnee;
 }
+void Turneu::resetContor() {
+  nrTurnee = 0;
+}
+

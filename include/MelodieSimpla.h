@@ -11,8 +11,9 @@ class MelodieSimpla: public Melodie {
     MelodieSimpla(const std::string& titlu, const std::string& genMuzical);
     ~MelodieSimpla() override;
 
+    void afiseaza(std::ostream& out) const override;
+    bool equals(const Melodie& other) const override;
     friend std::istream& operator>>(std::istream& in, MelodieSimpla& melodie);
-    friend std::ostream& operator<<(std::ostream& out, const MelodieSimpla& melodie);
 };
 
 

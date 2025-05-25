@@ -30,6 +30,7 @@ public:
     void desfasoaraActivitate() override;
     int profit() const ;
     static int getNrConcerte();
+    static void resetContor();
 
     friend std::ostream& operator<<(std::ostream& out, const Concert& c);
 };

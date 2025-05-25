@@ -70,21 +70,27 @@ int Album::stabilesteProfit(int buget,int contributieManager) const {
 
     return static_cast<int>(castig + contributieManager*0.1);
 }
+void Album::schimbaTitlu(const std::string& titluNou) {
+    titlu = titluNou;
+}
+
 int Album::getNrAlbume() {
     return nrAlbume;
+}
+void Album::resetContor() {
+    nrAlbume = 0;
+}
+
+bool Album::operator==(const Album &other) const {
+    return titlu == other.titlu;
 }
 
 
 std::ostream& operator<<(std::ostream& out, const Album& a) {
     out << "\nNume album: " << a.titlu <<"\n An lansare: " << a.dataLansare << "\n Numar de melodii: " << a.nrMelodii
     <<"\n Calitatea albumului: "<< a.calitateAlbum << "\n";
-    for (const auto& melodie: a.melodii) {
-        if (auto melS = std::dynamic_pointer_cast<MelodieSimpla>(melodie)) {
-            out << *melS << "\n";
-        }
-        else if (auto melC = std::dynamic_pointer_cast<MelodieColaborativa>(melodie)) {
-            out << *melC << "\n";
-        }
+    for (const auto& mel: a.melodii) {
+            out << *mel << "\n";
     }
     return out;
 }

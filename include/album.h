@@ -28,7 +28,10 @@ public:
     int stabilesteCresterePopularitate(int contributieManager) const;
     int stabilesteProfit(int buget, int contributieManager) const;
     void calculeazaCalitateAlbum(int medieSkillLevel, int contributieProducator);
+    void schimbaTitlu(const std::string& titluNou);
     static int getNrAlbume();
+    static void resetContor();
+    bool operator==(const Album& other) const;
     friend std::ostream& operator<<(std::ostream& out, const Album& a);
 };
 #endif

@@ -46,6 +46,7 @@ public:
     int calculeazaCosturi() override;
     void desfasoaraActivitate() override;
     static int getNrTurnee();
+    static void resetContor();
     friend std::istream& operator>>(std::istream& in, Turneu& turneu);
 };
 

@@ -136,6 +136,15 @@ void Trupa::restaurareMembruFost(int index) {
     membriFosti.erase(membriFosti.begin() + index);
   }
 }
+bool Trupa::verificaAlbum() {
+  if (albume.empty()) return false;
+  const auto& ultAdaugat = albume.back();
+  auto it = std::find_if(albume.begin(), albume.end() - 1, [&](const std::shared_ptr<Album>& album) {
+      return *album == *ultAdaugat;
+  });
+
+  return it != albume.end() - 1;
+}
 
 std::istream& operator>>(std::istream& in, Trupa& t){
   InputHandler verifInput;
@@ -155,8 +164,7 @@ std::istream& operator>>(std::istream& in, Trupa& t){
     }
   }
   std::cout << "Nume trupa: ";
-  in >> t.nume;
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  std::getline(std::cin, t.nume);
   std::cout << "Pentru inceput vom infiinta trupa" << std:: endl;
   std::cout << "Alege un manager: " << std:: endl;
   for (size_t i = 0; i < manageriDisponibili.size(); i++) {
@@ -177,7 +185,7 @@ std::istream& operator>>(std::istream& in, Trupa& t){
   std::vector<std::shared_ptr<Muzician>> membriiAlesi;
   std::cout << "Acum vei avea de ales 3 membrii ai trupei" << std::endl;
   std::cout << "Scrie \"c\" pentru a contiuna:";
-
+  verifInput.getStringInput({"c"});
   for (size_t i = 0; i < muzicieniDisponibili.size(); i++) {
     std::cout << i+1 << ") "<< *muzicieniDisponibili[i];
   }

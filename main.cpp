@@ -56,6 +56,13 @@ int main() {
         gameOver = g->terminareJoc();
         if (gameOver) {
             g->raportFinal();
+            if (g->retry()) {
+                g = std::make_shared<Gameplay>();
+                g->start();
+                g->setup();
+                g->incrementeazaAn();
+                gameOver = false;
+            }
         }
     }
 

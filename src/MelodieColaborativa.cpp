@@ -25,8 +25,7 @@ std::shared_ptr<Muzician> MelodieColaborativa::getArtist() const {
 std::istream& operator>>(std::istream& in, MelodieColaborativa& melodie) {
   InputHandler verifInput;
   std::cout << "Titlu: ";
-  in >> melodie.titlu;
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  std::getline(std::cin, melodie.titlu);
   std::cout << "Gen Muzical: 1) Pop 2) Rock 3) Electronic 4) Clasic" <<std::endl;
   std::cout << "Optiunea ta: ";
   int opt = verifInput.getIntInput(1,4);
@@ -46,7 +45,11 @@ std::istream& operator>>(std::istream& in, MelodieColaborativa& melodie) {
   in >> *melodie.artistColaborator;
   return in;
 }
-std::ostream& operator<<(std::ostream& out, const MelodieColaborativa& melodie) {
-  out << "Titlu: "<< melodie.titlu << "\nGen Muzical: " << melodie.genMuzical << "\nArtistul cu care a fost facuta colaborarea: " << *melodie.artistColaborator;
-  return out;
+void MelodieColaborativa::afiseaza(std::ostream &out) const {
+  out << "Melodie Colaborativa: "<< "Titlu: "<< titlu << "\nGen Muzical: " << genMuzical << "\nArtistul cu care a fost facuta colaborarea: " << *artistColaborator;
+}
+bool MelodieColaborativa::equals(const Melodie& other) const {
+  const auto* o = dynamic_cast<const MelodieColaborativa*>(&other);
+  if (!o) return false;
+  return titlu == o->titlu && genMuzical == o->genMuzical;
 }

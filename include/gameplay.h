@@ -53,6 +53,7 @@ public:
     bool aparDubluri(const std::shared_ptr<Muzician>& m);
     int citesteInt(int min, int max) const;
     std::string validareString(const std::vector<std::string>& inputOptions) const;
+    bool retry();
 };
 
 #endif
