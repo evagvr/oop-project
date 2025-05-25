@@ -1,10 +1,17 @@
 
 #include <string>
+
+#include "exceptii.h"
 #include "../include/gameplay.h"
 #include "../include/inputHandler.h"
-
+#include "../include/exceptii.h"
 
 int main() {
+    try {
+        throw ExceptieSkillLevel();
+    } catch (const ExceptieSkillLevel& e) {
+        std::cout << e.what() << std::endl;
+    }
 
     InputHandler verifInput;
     auto g = std::make_shared<Gameplay>();

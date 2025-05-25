@@ -2,7 +2,6 @@
 #ifndef EXCEPTII_H
 #define EXCEPTII_H
 #include <exception>
-#include <stdexcept>
 #include <string>
 
 
@@ -13,7 +12,6 @@ class ExceptieSkillLevel: public std::exception {
         return "SkillLevel-ul nu poate fi mai mare decat 10";
     }
 };
-
 
 
 
