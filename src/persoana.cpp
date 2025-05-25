@@ -26,4 +26,4 @@ Persoana& Persoana:: operator=(const Persoana& other){
   }
   return *this;
 }
-Persoana::~Persoana(){}
+Persoana::~Persoana() = default;

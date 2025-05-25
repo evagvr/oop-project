@@ -1,6 +1,5 @@
 start
 White Snow
-5
 3
 3
 c
