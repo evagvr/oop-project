@@ -131,7 +131,7 @@ void Gameplay::incrementeazaAn(){
         }
       } else if (auto mem = std::dynamic_pointer_cast<Muzician>(persoana)) {
         mem->modificareSkillLevel();
-        if (mem->obtineSkilllevel() == 0) {
+        if (mem->obtineSkilllevel() == 1) {
           std::cout << "Ai grija! ";
           mem->afiseazaNume();
           std::cout <<" are skillLevel-ul 1 in acest moment, daca nu ii cresti skillLevel-ul va fi nevoit sa paraseasca trupa in urmatorul an!" << std::endl;
