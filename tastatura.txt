@@ -45,6 +45,7 @@ Album
 c
 r
 da
+start
 Snow White
 1
 1
