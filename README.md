@@ -5,7 +5,9 @@ MusicLife este un joc in care preiei controlul asupra alegerilor si activitatilo
 Incepi prin a-ti forma trupa: iti alegi strategic membrii si personalul trupei(managerul si producatorul muzical), apoi in fiecare an iti dezvolti trupa prin activitati: repetitii, inregistrare de album, modificarea structurii trupei, concerte, turnee.
 ## Finalul Jocului
 **Castigi** daca cresti popularitatea la 100
-#### SAU
+
+**SAU**
+
 **Pierzi** daca ramai fara bani, iti parasesc toti membrii trupa sau depasesti cei 20 de ani pe care ii ai la dispozitie pentru a castiga.
 ### Folosiți template-ul corespunzător grupei voastre!
 
