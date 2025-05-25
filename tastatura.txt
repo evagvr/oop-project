@@ -200,6 +200,7 @@ c
 nj
 nu
 3000
+6
 1
 Alfabet nou
 2
