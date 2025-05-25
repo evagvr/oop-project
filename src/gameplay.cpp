@@ -184,11 +184,23 @@ bool Gameplay::terminareJoc() const{
       std:: cout << "\n\n Ai ajuns la popularitate 100 si ai castigat! Bravo!!" << std::endl;
       return true;
     }
-    if (jucator->getBuget() <= 0 || jucator->getPopularitate() < 0 || jucator->getAnCurent() >= 20) {
+    if (jucator->getBuget() <= 0 ) {
       std::cout << "\n==========================="<< std::endl;
       std::cout << "|  AI PIERDUT JOCUL! :(((((|"<< std::endl;
       std::cout << "===========================" << std::endl;
       std::cout << "\n\n Din pacate resursele tale au fost epuizate, ai pierdut jocul" << std::endl;
+      return true;
+    }
+    try {
+      if (jucator->getPopularitate() < 0)
+        throw ExceptiePopularitateNegativa();
+      else if (jucator->getAnCurent() >= 20)
+        throw ExceptieEpuizareAni();
+    } catch (const ExceptiePopularitateNegativa& e) {
+      std::cout << e.what() << std::endl;
+      return true;
+    } catch (const ExceptieEpuizareAni& e) {
+      std::cout << e.what() << std::endl;
       return true;
     }
     return false;
