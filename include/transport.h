@@ -15,6 +15,7 @@ public:
 
   virtual void afisare(std::ostream& out) const = 0;
   virtual int calculeazaCost() const = 0;
+  virtual float getFiabilitate() const = 0;
 
   friend std::ostream& operator<<(std::ostream& out, const Transport& t);
 };

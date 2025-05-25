@@ -6,7 +6,6 @@
 #include "../include/bazaDateJoc.h"
 #include "../include/trupa.h"
 #include "../include/album.h"
-#include "../include/exceptii.h"
 #include "../include/gameplay.h"
 
 Trupa::Trupa(): nume("necunoscut"), manager(), producator(){}

@@ -8,11 +8,9 @@
 class Album {
 private:
     static int nrAlbume;
-    static const int COEFICIENT_CALITATE = 2;
-    static const int RATA_INFLUENTA_BUGET = 10;
-    static const int CASTIG_MINIM_PER_MELODIE = 50;
-    static constexpr int RANDOM_BANI_MIN = 1;
-    static constexpr int RANDOM_BANI_MAX = 3;
+    static constexpr int COEFICIENT_CALITATE = 2;
+    static constexpr int RATA_INFLUENTA_BUGET = 10;
+    static constexpr int CASTIG_MINIM_PER_MELODIE = 50;
     std::string titlu;
     int dataLansare;
     int nrMelodii;

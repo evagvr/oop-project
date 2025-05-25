@@ -1,7 +1,6 @@
 #include <iostream>
 #include "../include/manager2.h"
 
-#include <random>
 
 Manager::Manager(): Persoana(){
   this->cost = 0;

@@ -1,5 +1,6 @@
 start
 White Snow
+5
 3
 3
 c
@@ -33,6 +34,7 @@ c
 c
 n
 2
+da
 1000
 2
 1
@@ -134,6 +136,7 @@ c
 1
 c
 2
+da
 2000
 6
 1
@@ -182,6 +185,8 @@ c
 4
 c
 2
+nj
+nu
 3000
 1
 Alfabet nou
@@ -224,6 +229,7 @@ Refuz
 Exclusiv Pop
 c
 6
+da
 c
 c
 s
@@ -238,6 +244,7 @@ c
 1
 c
 6
+da
 s
 18
 20
@@ -251,6 +258,7 @@ c
 1
 c
 2
+nu
 10000
 6
 1
@@ -275,6 +283,7 @@ Alternative
 c
 n
 7
+da
 18
 20
 1

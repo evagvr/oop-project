@@ -12,3 +12,6 @@ void Autocar::afisare(std::ostream &out) const {
 int Autocar::calculeazaCost() const {
     return costPeRunda;
 }
+float Autocar::getFiabilitate() const {
+    return fiabilitate;
+}

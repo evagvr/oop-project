@@ -20,40 +20,37 @@ public:
     Gameplay();
     ~Gameplay();
 
-    int costMinimLocatie(const std::shared_ptr<Turneu>& t);
-    template<typename T>
-    void afiseazaModalitatiTransport() const;
-    template<typename T>
-    std::shared_ptr<T> selecteazaModalitatiTransport() const;
-    std::shared_ptr<Oras> selecteazaLocatie(const std::shared_ptr<Turneu>& turneu);
+    int costMinimLocatie(const std::shared_ptr<Turneu>& t) const;
+    std::shared_ptr<Oras> selecteazaLocatie(const std::shared_ptr<Turneu>& turneu) const;
     void afiseazaLocatiiDisponibile(const std::shared_ptr<Turneu>& turneu) const;
 
     template<typename T>
-    void afiseazaPersoaneSpecifice();
+    void afiseazaPersoaneSpecifice() const;
     template<typename T>
-    std::shared_ptr<T> selecteazaPersoanaDupaId();
+    std::shared_ptr<T> selecteazaPersoanaDupaId() const;
     void setup();
     void start();
     void afisareDate() const;
     void meniu() const;
     void incrementeazaAn();
-    void cresteBuget(int crestere);
-    void scadeBuget(int scadere);
-    void crestePopularitate(int crestere);
+    void cresteBuget(int crestere) const;
+    void scadeBuget(int scadere) const;
+    void crestePopularitate(int crestere) const;
     bool terminareJoc() const;
     void repetitii();
-    void inregistreazaAlbum();
-    void modificaTrupa();
+    void inregistreazaAlbum() const;
+    void modificaTrupa() const ;
     void afiseazaStatusTrupa() const;
     void help() const;
-    void concert();
-    void turneu();
-    bool reset();
+    void concert() const;
+    void turneu() const;
+    bool reset() const;
     void raportFinal() const;
-    bool aparDubluri(const std::shared_ptr<Muzician>& m);
+    bool retry() const;
+    bool aparDubluri(const std::shared_ptr<Muzician>& m) const;
     int citesteInt(int min, int max) const;
     std::string validareString(const std::vector<std::string>& inputOptions) const;
-    bool retry();
+
 };
 
 #endif

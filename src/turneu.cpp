@@ -79,7 +79,18 @@ void Turneu::selecteazaTransport() {
   modalitateTransport = selecteazaModalitatiTransport();
 }
 int Turneu::calculeazaCosturi() {
-  return durata * 10000;
+  int costTotal = 0;
+  costTotal += modalitateTransport->calculeazaCost();
+
+  for (const auto& p: echipaTurneu) {
+    if (auto b = std::dynamic_pointer_cast<Bodyguard>(p)) {
+      costTotal += b->calculeazaCost();
+    }
+    else if(auto t = std::dynamic_pointer_cast<TehnicianSunet>(p)) {
+      costTotal += t->calculeazaCost();
+    }
+  }
+  return costTotal;
 }
 void Turneu::adaugaLocatie(const std::shared_ptr<Oras> &o) {
   orase.push_back(o);
@@ -96,20 +107,7 @@ bool Turneu::orasNeselectat(const std::shared_ptr<Oras>& o) const {
   return true;
 }
 
-int Turneu::costRunda() const {
-  int costTotal = 0;
-  costTotal += modalitateTransport->calculeazaCost();
 
-  for (const auto& p: echipaTurneu) {
-    if (auto b = std::dynamic_pointer_cast<Bodyguard>(p)) {
-      costTotal += b->calculeazaCost();
-    }
-    else if(auto t = std::dynamic_pointer_cast<TehnicianSunet>(p)) {
-      costTotal += t->calculeazaCost();
-    }
-  }
-  return costTotal;
-}
 void Turneu::stabilesteNrRunde(int nrRunde) {
   durata = nrRunde;
 }
@@ -139,14 +137,10 @@ void Turneu::desfasoaraActivitate(){
 void Turneu::calculeazaSuccesRunda(int nrRunda, float raportPrezenta, int contributieTehnician, int contributieBodyguard) {
   auto t = static_cast<float>(contributieTehnician)/100.0;
   auto b = static_cast<float>(contributieBodyguard)/100.0;
-  succes += static_cast<int>(((t + b + raportPrezenta)/ 3.0)*100.0);
+  float influentaFiabilitate = modalitateTransport->getFiabilitate() * 0.05;
+  float scorFinal = (t + b + raportPrezenta) / 3.0f + influentaFiabilitate;
+  succes += static_cast<int>(scorFinal * 100.0f);
   std::cout << "Succesul final al rundei "<< nrRunda + 1<<" a fost de " << succes << std::endl;
-}
-std::istream& operator>>(std::istream& in, Turneu& turneu){
-  std::cout << "Cate locatii vrei sa contina turneul" << std::endl;
-  in >> turneu.durata;
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  return in;
 }
 int Turneu::getNrTurnee() {
   return nrTurnee;

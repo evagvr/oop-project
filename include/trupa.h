@@ -1,15 +1,14 @@
 #ifndef TRUPA_H
 #define TRUPA_H
-#include "album.h"
-#include "concert.h"
 #include <string>
 #include <vector>
 #include <memory>
+#include "album.h"
+#include "concert.h"
 #include "persoana.h"
 #include "muzician.h"
 #include "manager2.h"
 #include "producator.h"
-
 #include "melodie.h"
 
 class Trupa{
@@ -24,7 +23,7 @@ public:
   Trupa();
   Trupa(const std::string& nume, const std::shared_ptr<Manager>& manager, const std::shared_ptr<ProducatorMuzical>& producator);
   Trupa(const std::shared_ptr<Manager>& manager, const std::shared_ptr<ProducatorMuzical>& producator);
-  Trupa& operator=(const Trupa& trupa);
+  Trupa& operator=(const Trupa& other);
   ~Trupa();
 
   std::vector<std::shared_ptr<Persoana>> echipa() const;

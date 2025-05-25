@@ -12,3 +12,6 @@ void Avion::afisare(std::ostream& out) const {
 int Avion::calculeazaCost() const {
     return costPeRunda;
 }
+float Avion::getFiabilitate() const {
+    return fiabilitate;
+}

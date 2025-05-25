@@ -158,8 +158,7 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
                 include/tehnicianSunet.h
                 include/transport.h
                 include/turneu.h
-                include/validation.h
-                )
+)
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
 # NOTE: RUN_SANITIZERS is optional, if it's not present it will default to true

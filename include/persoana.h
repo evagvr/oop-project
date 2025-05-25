@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PERSOANA_H
+#define PERSOANA_H
 #include <iostream>
 
 
@@ -20,3 +21,4 @@ public:
   virtual void afiseaza() const = 0;
 
 };
+#endif

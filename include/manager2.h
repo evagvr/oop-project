@@ -20,9 +20,6 @@ public:
   void contributieConcert();
   int contributie() override;
   void cresteriAnuale();
-  void organizeazaEveniment();
-  void interactioneazaCuTrupa();
-  void gestioneazaCriza();
   void afiseaza() const override;
   int influenteazaJoc() const;
 

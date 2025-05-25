@@ -1,18 +1,14 @@
 #include "../include/muzician.h"
 #include "../include/inputHandler.h"
 #include <iostream>
-#include <random>
-
-#include "../include/exceptii.h"
 #include "../include/gameplay.h"
-int Muzician:: totalMuzicieni = 0;
+
 Muzician::Muzician(): Persoana(){
     this->numeScena = "necunoscut";
     this->tipInstrument = "necunoscut";
     this->skillLevel = 0;
     this->cooperativitate = 0;
     this->ego = 0;
-    totalMuzicieni++;
 }
 Muzician::Muzician(int skillLevel, int cooperativitate, int ego): Persoana() {
   this->numeScena = "necunoscut";
@@ -76,10 +72,14 @@ void Muzician::modificareSkillLevel() {
   skillLevel--;
 }
 int Muzician::contributie() {
-  return static_cast<int>((cooperativitate-ego)/2);
+  return (cooperativitate-ego)/2;
 }
 void Muzician::contributieConcert() const {
-  std::cout << numeScena << " a cantat" <<std::endl;
+  if (cooperativitate < ego)
+    std::cout << numeScena << " a cantat, dar s-a certat mult cu trupa" <<std::endl;
+  else {
+    std::cout << numeScena << " a cantat, si a pastrat o atmosfera placuta in trupa" << std::endl;
+  }
 }
 int Muzician::calculeazaCost() const {
   return 0;

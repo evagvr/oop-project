@@ -10,11 +10,11 @@ private:
     std::vector<std::shared_ptr<T>> items;
     BazaDateJoc() = default;
     explicit BazaDateJoc(const std::vector<std::shared_ptr<T>>& items) : items(items) {}
-    static std::shared_ptr<BazaDateJoc<T>> instance;  // Corectare: adăugat <T>
+    static std::shared_ptr<BazaDateJoc<T>> instance;
 public:
     static std::shared_ptr<BazaDateJoc<T>> getInstance() {
         if (instance == nullptr) {
-            instance = std::shared_ptr<BazaDateJoc<T>>(new BazaDateJoc<T>());  // Corectare: nu mai folosim std::make_shared cu new
+            instance = std::shared_ptr<BazaDateJoc<T>>(new BazaDateJoc<T>());
         }
         return instance;
     }
@@ -53,4 +53,4 @@ public:
     }
 };
 
-#endif //BAZADATEJOC_H
+#endif

@@ -5,7 +5,6 @@
 
 
 class Autocar: public Transport {
-private:
 public:
   Autocar();
   Autocar(int costPeRunda, float fiabilitate);
@@ -13,6 +12,7 @@ public:
 
   void afisare(std::ostream& out) const override;
   int calculeazaCost() const override;
+  float getFiabilitate() const override;
 };
 
 

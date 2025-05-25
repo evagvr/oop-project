@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PRODUCATOR_H
+#define PRODUCATOR_H
 #include "persoana.h"
 #include <string>
 
@@ -25,3 +26,4 @@ public:
   friend std::istream& operator>>(std::istream& in, ProducatorMuzical& p);
   friend std::ostream& operator<<(std::ostream& out, const ProducatorMuzical& p);
 };
+#endif

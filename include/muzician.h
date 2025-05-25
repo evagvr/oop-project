@@ -1,8 +1,8 @@
-#pragma once
+#ifndef MUZICIAN_H
+#define MUZICIAN_H
 #include <memory>
-
-#include "persoana.h"
 #include <string>
+#include "persoana.h"
 
 class Muzician: public Persoana{
 
@@ -13,7 +13,6 @@ private:
   int cooperativitate;
   int ego;
 
-  static int totalMuzicieni;
 public:
   Muzician();
   Muzician(int skillLevel, int cooperativitate, int ego);
@@ -23,16 +22,16 @@ public:
   ~Muzician() override;
 
 
-  void contributieTurneu() const;
-  int obtineSkilllevel() const;
-  int calculeazaCost() const override;
-  void contributieConcert() const;
-  void afiseazaNume() const;
-  void repetitii();
   void status() const;
+  int obtineSkilllevel() const;
   void modificareSkillLevel();
+  void repetitii();
+  int calculeazaCost() const override;
   int contributie() override;
   void afiseaza() const override;
+  void contributieConcert() const;
+  void contributieTurneu() const;
+  void afiseazaNume() const;
 
   bool operator==(const Muzician& other) const;
 
@@ -41,3 +40,4 @@ public:
 };
 bool operator>(const Muzician& m1, const Muzician& m2);
 
+#endif

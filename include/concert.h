@@ -16,7 +16,7 @@ private:
     std::shared_ptr<Album> album;
     std::vector<std::shared_ptr<Persoana>> echipaTehnica;
     int costConcert = 0;
-    static const int PRET_BILET = 100;
+    static constexpr int PRET_BILET = 100;
 public:
     Concert();
     Concert(int succes, const std::shared_ptr<Oras>& locatie, const std::shared_ptr<Album>& album);
