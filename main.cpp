@@ -17,7 +17,7 @@ int main() {
     while (!gameOver) {
         g->afisareDate();
         g->meniu();
-        std::string opt = verifInput.getStringInput({"1", "2", "3", "4", "5", "6", "7", "r", "n"});
+        std::string opt = verifInput.getStringInput({"1", "2", "3", "4", "5", "6", "7", "r", "n", "exit"});
 
         if (opt == "n") {
             g->incrementeazaAn();
@@ -52,7 +52,7 @@ int main() {
             }
         }
         gameOver = g->terminareJoc();
-        if (gameOver) {
+        if (gameOver || opt == "exit") {
             g->raportFinal();
             if (g->retry()) {
                 g = std::make_shared<Gameplay>();

@@ -156,7 +156,7 @@ void Gameplay::crestePopularitate(int crestere) const {
 }
 
 void Gameplay::meniu() const{
-  std::cout << "Pentru a trece la anul urmator (n), pentru a reseta jocul (r)" << std::endl;
+  std::cout << "Pentru a trece la anul urmator (n), pentru a reseta jocul (r), pentru a parasi jocul (exit)" << std::endl;
   std::cout << "1. Repetitii cu trupa" << std::endl;
   std::cout << "2. Inregistreaza album" << std::endl;
   std::cout << "3. Modifica statusul trupei (recruteaza membru nou, elimina membru)" << std::endl;
