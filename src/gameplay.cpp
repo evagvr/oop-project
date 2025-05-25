@@ -92,7 +92,9 @@ void Gameplay::setup() {
 
 }
 void Gameplay::start() {
+  std::cout << "================================="<<std::endl;
   std::cout << "Bine ai venit in jocul MusicLife!" << std::endl;
+  std::cout << "=================================" << std::endl;
   std::cout << "MusicLife este un joc care are la baza dezvoltarea unei trupe in lumea muzicala. Tu vei indruma trupa si va trebui sa dai ce ai mai bun pentru a-ti aduce trupa la succes." << std::endl;
   std::cout << "---------------------------------------" << std::endl;
   std::cout << "Ai la dispozitie 20 de ani pentru a castiga jocul, va trebui sa aduci trupa la succes international(popularitate 100), poti trece la anul urmator inserand \"n\" in cadrul optiunii din meniu, dar ai grija deoarece membrii pot ajunge sa paraseasca trupa, iar in cazul in care ramai fara membri vei pierde jocul." << std::endl;
@@ -169,15 +171,24 @@ void Gameplay::meniu() const{
 }
 bool Gameplay::terminareJoc() const{
     if (!jucator->getTrupa()->verificaTrupa()) {
-      std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;
+      std::cout << "==========================="<< std::endl;
+      std::cout << "|  AI PIERDUT JOCUL! :(((((|"<< std::endl;
+      std::cout << "===========================" << std::endl;
+      std::cout << "\n\n Din pacate toti membrii tai au parasit trupa si ai pierdut jocul" << std::endl;
       return true;
     }
     if (jucator->getPopularitate() >= 100) {
-      std::cout << "===== Ai castigat! :)))) =====" << std::endl;
+      std::cout << "==========================="<< std::endl;
+      std::cout << "|  AI CASTIGAT JOCUL! :))))|"<< std::endl;
+      std::cout << "===========================" << std::endl;
+      std:: cout << "\n\n Ai ajuns la popularitate 100 si ai castigat! Bravo!!" << std::endl;
       return true;
     }
     if (jucator->getBuget() <= 0 || jucator->getPopularitate() < 0 || jucator->getAnCurent() >= 20) {
-      std::cout << "===== Ai pierdut jocul :((( =====" << std::endl;
+      std::cout << "==========================="<< std::endl;
+      std::cout << "|  AI PIERDUT JOCUL! :(((((|"<< std::endl;
+      std::cout << "===========================" << std::endl;
+      std::cout << "\n\n Din pacate resursele tale au fost epuizate, ai pierdut jocul" << std::endl;
       return true;
     }
     return false;
@@ -550,7 +561,10 @@ bool Gameplay::retry() const {
     Turneu::resetContor();
     return true;
   }
-  return false;
+  else {
+    std::cout << "Sper ca ti-a placut jocul!:)))" << std::endl;
+    return false;
+  }
 }
 
 int Gameplay::citesteInt(int minim, int maxim) const {
