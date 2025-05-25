@@ -34,7 +34,7 @@ void Jucator::construiesteTrupa() {
 
 
 void Jucator::afiseazaStatistici() const {
-  std::cout << "---Anul: " << an << "---\n";
+  std::cout << "\n---Anul: " << an << "---\n";
   std::cout << "Buget: " << buget << " RON\n";
   std::cout << "Popularitate: " << popularitate << "\n";
   if (!trupa)

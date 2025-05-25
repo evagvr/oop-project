@@ -114,12 +114,12 @@ void Turneu::stabilesteNrRunde(int nrRunde) {
 
 void Turneu::desfasoaraActivitate(){
 
-  std::cout << "---RAPORT ACTIVITATE---"<<std::endl;
+  std::cout << "\n---RAPORT ACTIVITATE---"<<std::endl;
   for (int i = 0; i < durata; i++) {
     std::cout << "Locatia nr." << i+1 <<" a turneului";
     int nrSpectatori;
     float raportPrezenta = calculeazaNrSpectatori(i,nrSpectatori);
-    std::cout << "S-au prezentat " << nrSpectatori << " de spectatori"<<std::endl;
+    std::cout << "\nS-au prezentat " << nrSpectatori << " de spectatori"<<std::endl;
     int contributieTehnician = 0;
     int contributieBodyguard = 0;
     for (const auto& p : echipaTurneu) {
