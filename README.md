@@ -1,4 +1,4 @@
-# MusicLife
+# Behind the Fame
 ## Description:
 MusicLife is a game where you take control over the choices and activities a music band makes, while your mission is to make the band known.
 ## Gameplay:
